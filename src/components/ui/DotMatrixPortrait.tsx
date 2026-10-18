@@ -75,19 +75,18 @@ export function DotMatrixPortrait({
     const isResting = p < 0.001;
 
     // Calculate fade away opacity: goes from 1.0 down to 0.0 as user scrolls
-    // Reaches 0 by ~82% through the hero section scroll
-    const fade = Math.max(0, Math.min(1, 1.0 - Math.pow(p / 0.82, 1.35)));
+    // Reaches completely 0 (invisible) by ~72% through the hero section scroll
+    const fade = Math.max(0, Math.min(1, 1.0 - Math.pow(p / 0.72, 1.25)));
 
     // When fully faded out, canvas is clear and invisible (zero draw overhead)
-    if (fade <= 0.002) {
+    if (fade <= 0.001) {
       return;
     }
 
     ctx.globalAlpha = fade;
 
-    // Horizontal wave amplitudes scale dynamically with scroll progress
-    const waveAmpY = (42 + 95 * p) * waveIntensity * p;
-    const waveAmpX = (18 + 42 * p) * waveIntensity * p;
+    // Minimal horizontal wave amplitude strictly along the X axis
+    const ampX = (8 + 12 * p) * waveIntensity * p;
 
     for (let b = 0; b < buckets.length; b++) {
       const bucket = buckets[b];
@@ -105,31 +104,29 @@ export function DotMatrixPortrait({
           ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
         }
       } else {
-        // Distort all dots into cascading horizontal waves that dissolve and disappear
-        const waveFreqX = Math.PI * 7.0; // ~3.5 horizontal wave cycles across the portrait
+        // Minimal wave animation strictly along the X axis that fades out to invisible
+        const waveFreqY = Math.PI * 7.5; // Wave frequency along vertical rows
+        const waveFreqX = Math.PI * 2.5;
 
         for (let i = 0; i < count; i++) {
           const d = dots[i];
 
           const normX = d.x / cw; // 0 to 1 across width
-          const normY = d.y / ch; // 0 to 1 across height
+          const normY = d.y / ch; // 0 to 1 down height
 
-          // Primary horizontal sinusoidal wave traveling across the face
-          const hWave = Math.sin(normX * waveFreqX - wavePhase * 5.2 + normY * Math.PI * 3.6);
-          // Secondary harmonic for organic fluid ripple feel
-          const hHarmonic = Math.sin(normX * (waveFreqX * 0.5) - wavePhase * 3.4 + normY * Math.PI * 2.0);
-          const combinedWave = hWave * 0.8 + hHarmonic * 0.2;
+          // Wave displacement strictly along the X axis
+          const wave1 = Math.sin(normY * waveFreqY - wavePhase * 4.2 + normX * waveFreqX);
+          const wave2 = Math.sin(normY * (waveFreqY * 0.5) - wavePhase * 2.6);
+          const combinedWave = wave1 * 0.78 + wave2 * 0.22;
 
-          // Vertical displacement forms undulating horizontal wave crests & troughs
-          const dy = combinedWave * waveAmpY - (p * 50);
-          // Horizontal drift along the wave direction
-          const dx = Math.cos(normX * waveFreqX - wavePhase * 4.6) * waveAmpX;
+          // Pure X-axis displacement (minimal, elegant sway)
+          const dx = combinedWave * ampX;
 
           const curX = d.x + dx;
-          const curY = d.y + dy;
+          const curY = d.y; // Strictly zero displacement on Y axis
 
-          // Points shrink as they dissolve into invisibility
-          const curR = Math.max(0.15, d.r * Math.pow(fade, 0.7));
+          // Subtle dot radius scaling as points fade into complete invisibility
+          const curR = Math.max(0.18, d.r * Math.pow(fade, 0.55));
 
           ctx.moveTo(curX + curR, curY);
           ctx.arc(curX, curY, curR, 0, Math.PI * 2);
