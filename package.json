@@ -12,7 +12,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "images": "node scripts/optimize-images.mjs",
     "evidence": "python scripts/prepare_evidence.py",
-    "lhci": "lhci autorun"
+    "lhci": "npx @lhci/cli autorun"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -36,7 +36,6 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@lhci/cli": "^0.15.1",
     "@types/node": "^22.13.9",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -44,7 +43,6 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.21.0",
     "eslint-config-next": "^15.2.1",
-    "lighthouse": "^13.5.0",
     "typescript": "^5.8.2"
   }
 }
