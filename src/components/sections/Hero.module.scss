@@ -40,14 +40,14 @@
 
 .dotMatrixWrap {
   position: relative;
-  width: min(500px, 85vw);
-  height: min(625px, 105vw);
+  width: min(520px, 88vw);
+  height: min(600px, 100vw);
   display: flex;
   align-items: center;
   justify-content: center;
-  mask-image: radial-gradient(circle at 50% 42%, black 40%, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 42%, black 40%, transparent 72%);
-  opacity: 0.88;
+  mask-image: radial-gradient(circle at 50% 45%, black 48%, rgba(0, 0, 0, 0.7) 72%, transparent 92%);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, black 48%, rgba(0, 0, 0, 0.7) 72%, transparent 92%);
+  opacity: 0.95;
 
   canvas {
     max-width: 100%;

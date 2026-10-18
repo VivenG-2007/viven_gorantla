@@ -16,9 +16,9 @@ async function generateDotMatrixIcon() {
   const dotSpacing = 4; // pixels between dots in the sample
   const maxDotRadius = 2.2;
 
-  // 1. Extract the face crop
+  // 1. Extract the face crop (centered on face in 1024x1024 portrait)
   const faceBuffer = await sharp(input)
-    .extract({ left: 0, top: 20, width: 334, height: 334 })
+    .extract({ left: 212, top: 80, width: 600, height: 600 })
     .resize(sampleSize, sampleSize, { fit: 'cover' })
     .ensureAlpha()
     .raw()

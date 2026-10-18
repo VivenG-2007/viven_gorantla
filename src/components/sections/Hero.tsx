@@ -28,15 +28,15 @@ export function Hero() {
       {/* 1. Deep black background with subtle vignette */}
       <div className={styles.bgVignette} aria-hidden="true" />
 
-      {/* 2. Static Dot Matrix Portrait — no animation, pure dot rendering */}
+      {/* 2. Dynamic Dot Matrix Portrait — pristine at rest, wave batch dispersal on scroll */}
       <div className={styles.viewLayer} aria-hidden="true">
         <div className={styles.dotMatrixWrap}>
           <DotMatrixPortrait
             src="/images/portraits/viven-hero-clean.png"
             dotSpacing={4}
-            maxDotRadius={1.8}
-            width={500}
-            height={625}
+            maxDotRadius={1.9}
+            width={520}
+            height={600}
             alt={`${person.name} — dot matrix portrait`}
           />
         </div>
