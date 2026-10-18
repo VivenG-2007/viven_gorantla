@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: "Work", href: "#work", numeral: "01" },
   { label: "About", href: "#about", numeral: "02" },
   { label: "Systems", href: "#systems", numeral: "03" },
-  { label: "Proof & Awards", href: "#proof", numeral: "04" },
+  { label: "Awards", href: "#proof", numeral: "04" },
   { label: "Contact", href: "#contact", numeral: "05" },
 ];
 
@@ -107,6 +107,8 @@ export function Navigation() {
             <kbd className={styles.kbd}>/</kbd>
           </button>
 
+          <MotionToggle />
+
           <a
             href="#contact"
             className={styles.contactBtn}
@@ -115,8 +117,6 @@ export function Navigation() {
             <span>Let&apos;s talk</span>
             <ArrowUpRight size={13} className={styles.contactArrow} />
           </a>
-
-          <MotionToggle />
 
           <button
             type="button"
