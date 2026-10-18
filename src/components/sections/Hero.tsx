@@ -84,8 +84,8 @@ export function Hero() {
         {/* Supporting description and minimal CTAs */}
         <div className={styles.bottomBlock}>
           <p className={styles.twoLineIntro}>
-            I build products, teach developers,<br />
-            and help education businesses grow.
+            I am a student &amp; tech enthusiast<br />
+            who loves turning magic into logic.
           </p>
 
           <div className={styles.ctaGroup}>

@@ -22,7 +22,7 @@ export const siteContent = {
   hero: {
     headline: "I BUILD SYSTEMS THAT MAKE AI USEFUL.",
     subline:
-      "Viven Gorantla — student developer exploring agentic AI, developer tools, backend systems and cloud infrastructure.",
+      "Viven Gorantla — student & tech enthusiast who loves turning magic into logic.",
     ctas: [
       { label: "EXPLORE THE WORK", href: "#work" },
       { label: "HOW I THINK", href: "#systems" },

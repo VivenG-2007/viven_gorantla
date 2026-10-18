@@ -22,12 +22,12 @@ export interface Person {
 
 export const person: Person = {
   name: "Viven Gorantla",
-  role: "Second-year B.Tech student · builder of AI developer tools & backend systems",
+  role: "Student & tech enthusiast · turning magic into logic",
   institution: "Geethanjali College of Engineering and Technology (GCET), Hyderabad",
   years: "2025–2029",
   cgpa: {
     value: "9.36",
-    source: "as listed on LinkedIn",
+    source: "as of sem-2",
     show: true, // Single switch to toggle CGPA visibility
   },
   links: {
