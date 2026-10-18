@@ -85,8 +85,8 @@ export function DotMatrixPortrait({
 
     ctx.globalAlpha = fade;
 
-    // Minimal vertical wave amplitude strictly along the Y axis
-    const ampY = (8 + 12 * p) * waveIntensity * p;
+    // Minimal vertical ripple amplitude strictly along the Y axis
+    const ampY = (10 + 16 * p) * waveIntensity * p;
 
     for (let b = 0; b < buckets.length; b++) {
       const bucket = buckets[b];
@@ -104,9 +104,10 @@ export function DotMatrixPortrait({
           ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
         }
       } else {
-        // Minimal wave animation strictly along the Y axis that fades out to invisible
-        const waveFreqX = Math.PI * 7.5; // Wave frequency across horizontal columns
+        // Enriched concentric & vertical ripple waves that fade out to invisible
+        const waveFreqX = Math.PI * 7.0; // Column ripple frequency
         const waveFreqY = Math.PI * 2.5;
+        const rippleFreq = 0.048; // Concentric ring ripple frequency
 
         for (let i = 0; i < count; i++) {
           const d = dots[i];
@@ -114,19 +115,26 @@ export function DotMatrixPortrait({
           const normX = d.x / cw; // 0 to 1 across width
           const normY = d.y / ch; // 0 to 1 down height
 
-          // Wave displacement strictly along the Y axis
-          const wave1 = Math.sin(normX * waveFreqX - wavePhase * 4.2 + normY * waveFreqY);
-          const wave2 = Math.sin(normX * (waveFreqX * 0.5) - wavePhase * 2.6);
-          const combinedWave = wave1 * 0.78 + wave2 * 0.22;
+          // 1. Concentric circular water-like ripple expanding from face center
+          const ripple1 = Math.sin(d.distFromCenter * rippleFreq - wavePhase * 5.2);
+          const ripple2 = Math.sin(d.distFromCenter * (rippleFreq * 1.8) - wavePhase * 3.6);
+          const concentricRipple = ripple1 * 0.72 + ripple2 * 0.28;
 
-          // Pure Y-axis displacement (minimal, elegant vertical wave ripple)
-          const dy = combinedWave * ampY;
+          // 2. Harmonic column ripple wave across vertical coordinates
+          const colWave = Math.sin(normX * waveFreqX - wavePhase * 4.4 + normY * waveFreqY);
+
+          // Combined ripple equation:
+          const combinedRipple = concentricRipple * 0.60 + colWave * 0.40;
+
+          // Pure Y-axis displacement (harmonic vertical ripple crests & troughs)
+          const dy = combinedRipple * ampY;
 
           const curX = d.x; // Strictly zero displacement on X axis
           const curY = d.y + dy;
 
-          // Subtle dot radius scaling as points fade into complete invisibility
-          const curR = Math.max(0.18, d.r * Math.pow(fade, 0.55));
+          // Concentric ripples subtly pulse dot radii along wave crests for clear liquid texture
+          const ripplePulse = 1 + 0.22 * concentricRipple * (1 - p);
+          const curR = Math.max(0.18, d.r * Math.pow(fade, 0.55) * ripplePulse);
 
           ctx.moveTo(curX + curR, curY);
           ctx.arc(curX, curY, curR, 0, Math.PI * 2);
@@ -361,7 +369,11 @@ export function DotMatrixPortrait({
       className={className}
       role="img"
       aria-label={alt}
+      width={width}
+      height={height}
       style={{ imageRendering: "auto" }}
-    />
+    >
+      <p>{alt}</p>
+    </canvas>
   );
 }

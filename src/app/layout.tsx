@@ -114,9 +114,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/portraits/viven-hero-clean.png",
-        width: 500,
-        height: 625,
+        url: "/images/portraits/viven-hero-studio.png",
+        width: 1024,
+        height: 1024,
         alt: "Viven Gorantla — Student Developer",
         type: "image/png",
       },
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
     title: "Viven Gorantla — Student Developer | AI Systems & Backend Engineering",
     description:
       "Portfolio of Viven Gorantla — AI developer tools, agentic workflows, and cloud infrastructure.",
-    images: ["/images/portraits/viven-hero-clean.png"],
+    images: ["/images/portraits/viven-hero-studio.png"],
   },
   icons: {
     icon: [
@@ -141,6 +141,11 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Viven Gorantla",
   },
 };
 
@@ -161,7 +166,7 @@ export default function RootLayout({
           "Second-year B.Tech student at GCET Hyderabad building AI developer tools, agentic workflows, and backend systems. Creator of PatchLine, Crisis Commander, and BLACKBOX AI.",
         disambiguatingDescription:
           "Viven Gorantla — student developer building production-grade AI systems and developer tools.",
-        image: `${baseUrl}/images/portraits/viven-hero-clean.png`,
+        image: `${baseUrl}/images/portraits/viven-hero-studio.png`,
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: person.institution,
