@@ -59,27 +59,37 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vivengorantla.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Viven Gorantla — AI Systems, Developer Tools & Backend Engineering",
+    default: "Viven Gorantla — Student Developer | AI Systems, Dev Tools & Backend Engineering",
     template: "%s | Viven Gorantla",
   },
   description:
-    "Second-year B.Tech student at GCET Hyderabad building AI developer tools, agentic workflows, backend systems, and cloud infrastructure.",
+    "Portfolio of Viven Gorantla — second-year B.Tech student at GCET Hyderabad building AI developer tools, agentic workflows, backend systems, and cloud infrastructure. Creator of PatchLine, Crisis Commander, and BLACKBOX AI.",
   keywords: [
     "Viven Gorantla",
+    "Viven Gorantla portfolio",
+    "Viven Gorantla developer",
     "Agentic AI",
+    "AI developer tools",
     "Developer Tools",
     "Backend Systems",
     "Cloud Engineering",
     "PatchLine",
+    "PatchLine AI",
     "Crisis Commander",
     "BLACKBOX AI",
     "GCET Hyderabad",
     "AI Systems Engineer",
     "Full Stack Architecture",
+    "Next.js portfolio",
+    "Python developer",
+    "TypeScript developer",
+    "FastAPI",
+    "student developer India",
   ],
   authors: [{ name: "Viven Gorantla", url: baseUrl }],
   creator: "Viven Gorantla",
   publisher: "Viven Gorantla",
+  category: "technology",
   alternates: {
     canonical: baseUrl,
   },
@@ -95,19 +105,29 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Viven Gorantla — AI Systems, Developer Tools & Backend Engineering",
+    title: "Viven Gorantla — Student Developer | AI Systems & Backend Engineering",
     description:
-      "Second-year B.Tech student building AI developer tools, agentic workflows, backend systems, and cloud infrastructure.",
+      "Portfolio of Viven Gorantla — building AI developer tools, agentic workflows, backend systems, and cloud infrastructure. Explore projects, case studies, and engineering insights.",
     url: baseUrl,
     siteName: "Viven Gorantla Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/portraits/viven-hero-clean.png",
+        width: 500,
+        height: 625,
+        alt: "Viven Gorantla — Student Developer",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Viven Gorantla — AI Systems, Developer Tools & Backend Engineering",
+    title: "Viven Gorantla — Student Developer | AI Systems & Backend Engineering",
     description:
-      "Second-year B.Tech student building AI developer tools, agentic workflows, backend systems, and cloud infrastructure.",
+      "Portfolio of Viven Gorantla — AI developer tools, agentic workflows, and cloud infrastructure.",
+    images: ["/images/portraits/viven-hero-clean.png"],
   },
   icons: {
     icon: [
@@ -137,8 +157,11 @@ export default function RootLayout({
         "@id": `${baseUrl}/#person`,
         name: person.name,
         jobTitle: "Student Developer & AI Systems Builder",
+        description:
+          "Second-year B.Tech student at GCET Hyderabad building AI developer tools, agentic workflows, and backend systems. Creator of PatchLine, Crisis Commander, and BLACKBOX AI.",
         disambiguatingDescription:
-          "Second-year B.Tech student at GCET Hyderabad building AI developer tools, agentic workflows, and backend systems.",
+          "Viven Gorantla — student developer building production-grade AI systems and developer tools.",
+        image: `${baseUrl}/images/portraits/viven-hero-clean.png`,
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: person.institution,

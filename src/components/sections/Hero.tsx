@@ -1,22 +1,14 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+import React from "react";
 import { useMotionStore } from "@/lib/store";
 import { person } from "@/content/profile";
 import { ArrowDown, ArrowUpRight, ChevronDown } from "lucide-react";
+import { DotMatrixPortrait } from "@/components/ui/DotMatrixPortrait";
 import styles from "./Hero.module.scss";
 
-const Hero3DView = dynamic(() => import("@/components/gl/Hero3DView"), {
-  ssr: false,
-});
-
 export function Hero() {
-  const motionOn = useMotionStore((s) => s.motionOn);
-  const gpuTier = useMotionStore((s) => s.gpuTier);
   const lenis = useMotionStore((s) => s.lenis);
-  const viewContainerRef = useRef<HTMLDivElement>(null);
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -31,32 +23,23 @@ export function Hero() {
     }
   };
 
-  const isWebGlActive = motionOn && gpuTier !== "off" && gpuTier !== null;
-
   return (
-    <section id="intro" className={styles.heroSection}>
+    <section id="intro" className={styles.heroSection} aria-label="Hero introduction">
       {/* 1. Deep black background with subtle vignette */}
       <div className={styles.bgVignette} aria-hidden="true" />
 
-      {/* 2. 3D WebGL Canvas Layer (Dynamic 3D Particle Portrait) */}
-      <div ref={viewContainerRef} className={styles.viewLayer} aria-hidden="true">
-        {isWebGlActive ? (
-          <Hero3DView gpuTier={gpuTier} />
-        ) : (
-          <div className={styles.staticFallback}>
-            <div className={styles.staticAmbientGlow} />
-            <div className={styles.fallbackImageWrap}>
-              <Image
-                src="/images/portraits/viven-hero-clean.png"
-                alt={person.name}
-                width={500}
-                height={625}
-                className={styles.fallbackPortrait}
-                priority
-              />
-            </div>
-          </div>
-        )}
+      {/* 2. Static Dot Matrix Portrait — no animation, pure dot rendering */}
+      <div className={styles.viewLayer} aria-hidden="true">
+        <div className={styles.dotMatrixWrap}>
+          <DotMatrixPortrait
+            src="/images/portraits/viven-hero-clean.png"
+            dotSpacing={4}
+            maxDotRadius={1.8}
+            width={500}
+            height={625}
+            alt={`${person.name} — dot matrix portrait`}
+          />
+        </div>
       </div>
 
       {/* 3. Subtle atmospheric scrim for typography contrast */}
