@@ -75,7 +75,8 @@ export function DotMatrixPortrait({
     const isResting = p < 0.001;
 
     // Calculate fade away opacity: goes from 1.0 down to 0.0 as user scrolls
-    const fade = Math.max(0, Math.min(1, 1.0 - Math.pow(p, 1.25)));
+    // Reaches 0 by ~82% through the hero section scroll
+    const fade = Math.max(0, Math.min(1, 1.0 - Math.pow(p / 0.82, 1.35)));
 
     // When fully faded out, canvas is clear and invisible (zero draw overhead)
     if (fade <= 0.002) {
@@ -84,9 +85,9 @@ export function DotMatrixPortrait({
 
     ctx.globalAlpha = fade;
 
-    // Progressive wave parameters that form distinct flowing wave batches
-    const waveAmp = (22 + 70 * p) * waveIntensity * p;
-    const disperseSpeed = (75 * Math.pow(p, 1.35)) * waveIntensity;
+    // Horizontal wave amplitudes scale dynamically with scroll progress
+    const waveAmpY = (42 + 95 * p) * waveIntensity * p;
+    const waveAmpX = (18 + 42 * p) * waveIntensity * p;
 
     for (let b = 0; b < buckets.length; b++) {
       const bucket = buckets[b];
@@ -97,39 +98,38 @@ export function DotMatrixPortrait({
       ctx.beginPath();
 
       if (isResting) {
-        // Pristine resting dot matrix portrait
+        // Pristine resting dot matrix portrait (100% sharp, zero distortion)
         for (let i = 0; i < count; i++) {
           const d = dots[i];
           ctx.moveTo(d.x + d.r, d.y);
           ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
         }
       } else {
-        // Points distort into flowing batches of waves and disperse as they fade
+        // Distort all dots into cascading horizontal waves that dissolve and disappear
+        const waveFreqX = Math.PI * 7.0; // ~3.5 horizontal wave cycles across the portrait
+
         for (let i = 0; i < count; i++) {
           const d = dots[i];
 
-          // 1. Transverse traveling wave batch
-          const w1 = Math.sin(d.y * 0.026 + wavePhase * 3.8 + d.batchIndex * 0.75);
-          // 2. Longitudinal cross wave
-          const w2 = Math.cos(d.x * 0.022 - wavePhase * 3.0 + d.phase);
-          // 3. Concentric radial ripple from the portrait center
-          const ripple = Math.sin(d.distFromCenter * 0.032 - wavePhase * 4.2);
+          const normX = d.x / cw; // 0 to 1 across width
+          const normY = d.y / ch; // 0 to 1 across height
 
-          // Wave dispersal heading: dots separate along wave crests
-          const waveHeading = d.angle + w1 * 0.7;
-          const disperseDist = (d.distFromCenter * 0.32 + disperseSpeed) * p;
+          // Primary horizontal sinusoidal wave traveling across the face
+          const hWave = Math.sin(normX * waveFreqX - wavePhase * 5.2 + normY * Math.PI * 3.6);
+          // Secondary harmonic for organic fluid ripple feel
+          const hHarmonic = Math.sin(normX * (waveFreqX * 0.5) - wavePhase * 3.4 + normY * Math.PI * 2.0);
+          const combinedWave = hWave * 0.8 + hHarmonic * 0.2;
 
-          const dx = (w1 * 0.65 + ripple * 0.35) * waveAmp + Math.cos(waveHeading) * disperseDist;
-          const dy = (w2 * 0.6 + w1 * 0.4) * (waveAmp * 0.82) + Math.sin(waveHeading) * (disperseDist * 0.85) - (p * 45);
+          // Vertical displacement forms undulating horizontal wave crests & troughs
+          const dy = combinedWave * waveAmpY - (p * 50);
+          // Horizontal drift along the wave direction
+          const dx = Math.cos(normX * waveFreqX - wavePhase * 4.6) * waveAmpX;
 
           const curX = d.x + dx;
           const curY = d.y + dy;
 
-          // Points shrink and dissolve as wave disperses
-          const curR = Math.max(
-            0.2,
-            d.r * Math.pow(fade, 0.65) * (1 + 0.15 * Math.sin(d.distFromCenter * 0.025 + wavePhase) * (1 - p))
-          );
+          // Points shrink as they dissolve into invisibility
+          const curR = Math.max(0.15, d.r * Math.pow(fade, 0.7));
 
           ctx.moveTo(curX + curR, curY);
           ctx.arc(curX, curY, curR, 0, Math.PI * 2);

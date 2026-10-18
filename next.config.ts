@@ -26,6 +26,15 @@ const config: NextConfig = {
         ? { exclude: ["error", "warn"] }
         : false,
   },
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // Use in-memory cache in development to prevent Windows NTFS file locking & ENOENT pack.gz issues
+      config.cache = {
+        type: "memory",
+      };
+    }
+    return config;
+  },
   async headers() {
     return [
       {
