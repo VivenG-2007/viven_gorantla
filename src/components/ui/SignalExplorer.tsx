@@ -77,9 +77,27 @@ export function SignalExplorer() {
       {/* Visual Canvas Area with Dynamic Geometry */}
       <div className={styles.visualCanvas} aria-hidden="true">
         <div className={`${styles.dynamicShape} ${styles[`shape_${active.id}`]}`}>
-          <div className={styles.ring1} />
-          <div className={styles.ring2} />
+          {/* Moving Radar Sweep Beam */}
+          <div className={styles.radarSweep} />
+
+          {/* Concentric Expanding Pulse Wave Rings */}
+          <div className={styles.pulseWave1} />
+          <div className={styles.pulseWave2} />
+          <div className={styles.pulseWave3} />
+
+          {/* Rotating Orbital Rings with Glowing Satellite Nodes */}
+          <div className={styles.ring1}>
+            <span className={styles.satelliteDot1} />
+          </div>
+          <div className={styles.ring2}>
+            <span className={styles.satelliteDot2} />
+          </div>
           <div className={styles.ring3} />
+          <div className={styles.ringOuter} />
+
+          {/* Digital Reticle Crosshairs */}
+          <div className={styles.crosshairX} />
+          <div className={styles.crosshairY} />
           <div className={styles.gridOverlay} />
         </div>
 
