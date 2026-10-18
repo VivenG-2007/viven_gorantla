@@ -85,8 +85,8 @@ export function DotMatrixPortrait({
 
     ctx.globalAlpha = fade;
 
-    // Minimal horizontal wave amplitude strictly along the X axis
-    const ampX = (8 + 12 * p) * waveIntensity * p;
+    // Minimal vertical wave amplitude strictly along the Y axis
+    const ampY = (8 + 12 * p) * waveIntensity * p;
 
     for (let b = 0; b < buckets.length; b++) {
       const bucket = buckets[b];
@@ -104,9 +104,9 @@ export function DotMatrixPortrait({
           ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
         }
       } else {
-        // Minimal wave animation strictly along the X axis that fades out to invisible
-        const waveFreqY = Math.PI * 7.5; // Wave frequency along vertical rows
-        const waveFreqX = Math.PI * 2.5;
+        // Minimal wave animation strictly along the Y axis that fades out to invisible
+        const waveFreqX = Math.PI * 7.5; // Wave frequency across horizontal columns
+        const waveFreqY = Math.PI * 2.5;
 
         for (let i = 0; i < count; i++) {
           const d = dots[i];
@@ -114,16 +114,16 @@ export function DotMatrixPortrait({
           const normX = d.x / cw; // 0 to 1 across width
           const normY = d.y / ch; // 0 to 1 down height
 
-          // Wave displacement strictly along the X axis
-          const wave1 = Math.sin(normY * waveFreqY - wavePhase * 4.2 + normX * waveFreqX);
-          const wave2 = Math.sin(normY * (waveFreqY * 0.5) - wavePhase * 2.6);
+          // Wave displacement strictly along the Y axis
+          const wave1 = Math.sin(normX * waveFreqX - wavePhase * 4.2 + normY * waveFreqY);
+          const wave2 = Math.sin(normX * (waveFreqX * 0.5) - wavePhase * 2.6);
           const combinedWave = wave1 * 0.78 + wave2 * 0.22;
 
-          // Pure X-axis displacement (minimal, elegant sway)
-          const dx = combinedWave * ampX;
+          // Pure Y-axis displacement (minimal, elegant vertical wave ripple)
+          const dy = combinedWave * ampY;
 
-          const curX = d.x + dx;
-          const curY = d.y; // Strictly zero displacement on Y axis
+          const curX = d.x; // Strictly zero displacement on X axis
+          const curY = d.y + dy;
 
           // Subtle dot radius scaling as points fade into complete invisibility
           const curR = Math.max(0.18, d.r * Math.pow(fade, 0.55));
