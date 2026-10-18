@@ -28,11 +28,11 @@ export function Hero() {
       {/* 1. Deep black background with subtle vignette */}
       <div className={styles.bgVignette} aria-hidden="true" />
 
-      {/* 2. Dynamic Dot Matrix Portrait — pristine at rest, wave batch dispersal on scroll */}
+      {/* 2. Dynamic Dot Matrix Portrait — pristine at rest, horizontal waves & fade on scroll */}
       <div className={styles.viewLayer} aria-hidden="true">
         <div className={styles.dotMatrixWrap}>
           <DotMatrixPortrait
-            src="/images/portraits/viven-hero-clean.png"
+            src="/images/portraits/viven-hero-studio.png?v=3"
             dotSpacing={4}
             maxDotRadius={1.9}
             width={520}

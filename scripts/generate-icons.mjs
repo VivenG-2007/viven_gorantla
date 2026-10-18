@@ -59,24 +59,14 @@ async function generateDotMatrixIcon() {
       const isRim = dist > 0.75 || y > sh * 0.62;
       const rimFactor = isRim ? Math.min(1.0, Math.pow(Math.max(0, dist - 0.55) / 0.5, 1.2)) : 0.0;
 
-      let fillColor;
-      if (rimFactor > 0.05) {
-        // Golden-orange rim
-        const oR = Math.round(Math.min(255, (lum * 0.6 + 0.4) * 255));
-        const oG = Math.round(Math.min(255, (lum * 0.35 + 0.2) * rimFactor * 255 + lum * (1 - rimFactor) * 255));
-        const oB = Math.round(Math.min(255, lum * (1 - rimFactor * 0.8) * 100));
-        fillColor = `rgb(${oR},${oG},${oB})`;
-      } else {
-        // Grayscale
-        const gray = Math.round(lum * 245);
-        fillColor = `rgb(${gray},${gray},${gray})`;
-      }
+      const fillColor = "rgb(255,255,255)";
+      const dotAlpha = Math.min(1.0, Math.max(0.2, (lum * 0.78 + 0.22) * a));
 
       const cx = x * scale;
       const cy = y * scale;
       const dr = dotR * scale;
 
-      dots += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${dr.toFixed(1)}" fill="${fillColor}" opacity="${(a * 0.92).toFixed(2)}"/>`;
+      dots += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${dr.toFixed(1)}" fill="${fillColor}" opacity="${dotAlpha.toFixed(2)}"/>`;
     }
   }
 

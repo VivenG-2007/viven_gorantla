@@ -215,7 +215,10 @@ export function DotMatrixPortrait({
     ctx.scale(dpr, dpr);
 
     const img = new Image();
-    img.crossOrigin = "anonymous";
+    // Only set crossOrigin on remote URLs to prevent browser security blocks on local static files
+    if (src.startsWith("http://") || src.startsWith("https://")) {
+      img.crossOrigin = "anonymous";
+    }
 
     img.onload = () => {
       const offscreen = document.createElement("canvas");
@@ -241,11 +244,9 @@ export function DotMatrixPortrait({
       const imgData = offCtx.getImageData(0, 0, cw, ch);
       const data = imgData.data;
 
-      // Face center for rim and radial wave calculations
+      // Face center for horizontal and radial wave calculations
       const faceCx = cw * 0.5;
       const faceCy = ch * 0.38;
-      const faceRadiusX = cw * 0.36;
-      const faceRadiusY = ch * 0.30;
 
       const bucketMap = new Map<string, MatrixDot[]>();
 
@@ -257,44 +258,22 @@ export function DotMatrixPortrait({
           const b = data[idx + 2] / 255;
           const a = data[idx + 3] / 255;
 
-          if (a < 0.15) continue;
+          if (a < 0.12) continue;
 
-          // Ignore black background
+          // Skip pure black background
           if (r < 0.03 && g < 0.03 && b < 0.03) continue;
 
           const lum = 0.299 * r + 0.587 * g + 0.114 * b;
           if (lum < 0.035 && a < 0.75) continue;
 
-          // Normalized distance from face center for rim detection
-          const nx = (x - faceCx) / faceRadiusX;
-          const ny = (y - faceCy) / faceRadiusY;
-          const distNorm = Math.sqrt(nx * nx + ny * ny);
-
           const dotRadius = maxDotRadius * (0.35 + lum * 0.65);
 
-          // Determine color: grayscale silver-white face, golden-orange rim on outer silhouette
-          const isRim = distNorm > 0.78 || y > ch * 0.65;
-          const rimFactor = isRim
-            ? Math.min(1.0, Math.pow(Math.max(0, distNorm - 0.55) / 0.5, 1.2))
-            : 0.0;
-
-          let fillKey: string;
-          if (rimFactor > 0.05) {
-            // Golden-orange rim dots
-            const orangeR = Math.min(255, Math.round((lum * 0.6 + 0.4) * 255));
-            const orangeG = Math.min(255, Math.round((lum * 0.35 + 0.2) * rimFactor * 255 + lum * (1 - rimFactor) * 255));
-            const orangeB = Math.min(255, Math.round(lum * (1 - rimFactor * 0.8) * 100));
-            // Quantize to ~16 color bins for fast Canvas 2D path batching
-            const qR = Math.round(orangeR / 8) * 8;
-            const qG = Math.round(orangeG / 8) * 8;
-            const qB = Math.round(orangeB / 8) * 8;
-            fillKey = `rgba(${qR},${qG},${qB},${(a * 0.92).toFixed(2)})`;
-          } else {
-            // Grayscale silver-white face dots
-            const gray = Math.round(lum * 245);
-            const qGray = Math.round(gray / 8) * 8;
-            fillKey = `rgba(${qGray},${qGray},${qGray},${(a * 0.94).toFixed(2)})`;
-          }
+          // All dots are pure white only (monochrome minimalism)
+          // Opacity is mapped to luminance and alpha for rich tonal definition
+          const dotAlpha = Math.min(1.0, Math.max(0.18, (lum * 0.78 + 0.22) * a));
+          // Quantize into ~16 opacity buckets for 120 FPS batching
+          const qAlpha = (Math.round(dotAlpha * 16) / 16).toFixed(2);
+          const fillKey = `rgba(255,255,255,${qAlpha})`;
 
           const distFromCenter = Math.hypot(x - faceCx, y - faceCy);
           const angle = Math.atan2(y - faceCy, x - faceCx);
