@@ -46,13 +46,12 @@ function buildProceduralFacePoints(sampleW: number, sampleH: number, haloCount: 
       origins.push(wx, wy, wz);
       positions.push(wx, wy, wz);
 
-      const isRim = rad > 0.65 || Math.abs(nx) > 0.45 || y > sampleH * 0.65;
-      const goldFactor = isRim ? Math.min(1.0, (rad - 0.5) / 0.5) : 0.0;
-      const silver = 0.85;
-      const c = new THREE.Color(silver, silver * 0.96, silver * 0.92).lerp(
-        new THREE.Color(1.0, 0.78, 0.32),
-        goldFactor * 0.85
-      );
+      const isRim = rad > 0.58 || Math.abs(nx) > 0.42 || y > sampleH * 0.62;
+      const goldFactor = isRim ? Math.min(1.0, (rad - 0.48) / 0.45) : 0.0;
+      const silver = 0.92;
+      const faceColor = new THREE.Color(silver, silver, silver);
+      const goldColor = new THREE.Color(1.0, 0.74, 0.22);
+      const c = faceColor.clone().lerp(goldColor, goldFactor);
       colors.push(c.r, c.g, c.b);
       params.push(goldFactor, 0.8 + Math.random(), 0.9 + Math.random() * 0.3, Math.random());
     }
@@ -181,16 +180,16 @@ export function ParticlePortrait({
             positions.push(wx, wy, wz);
 
             // Rim particles: hair outline and shoulders receive full golden-orange warmth
-            const isRim = distHead > 0.58 || Math.abs(nx) > 0.38 || y > sampleH * 0.62;
+            const isRim = distHead > 0.52 || Math.abs(nx) > 0.36 || y > sampleH * 0.60;
             const goldFactor = isRim
-              ? Math.min(1.0, Math.pow(Math.max(0, distHead - 0.46) / 0.44, 1.2))
-              : 0.2; // Subtle golden warmth even on face
+              ? Math.min(1.0, Math.pow(Math.max(0, distHead - 0.42) / 0.45, 1.3))
+              : 0.0; // Pure grayscale on face center
 
-            // Warm gold and orange palette
-            const silverBase = Math.min(1.0, lum * 1.25);
-            const faceColor = new THREE.Color(silverBase, silverBase * 0.95, silverBase * 0.88);
-            const goldColor = new THREE.Color(1.0, 0.76, 0.24); // Radiant Gold
-            const mixedColor = faceColor.clone().lerp(goldColor, goldFactor * 0.92);
+            // Grayscale silver-white face with radiant golden-orange rim
+            const silverBase = Math.min(1.0, lum * 1.35);
+            const faceColor = new THREE.Color(silverBase, silverBase, silverBase);
+            const goldColor = new THREE.Color(1.0, 0.74, 0.22); // Radiant Warm Gold
+            const mixedColor = faceColor.clone().lerp(goldColor, goldFactor);
 
             colors.push(mixedColor.r, mixedColor.g, mixedColor.b);
 

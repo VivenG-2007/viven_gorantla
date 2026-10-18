@@ -113,7 +113,7 @@
   @include focus-ring;
 
   &:hover {
-    color: var(--c-cyan);
+    color: var(--c-orange, #f97316);
   }
 }
 
@@ -196,8 +196,9 @@
   @include focus-ring;
 
   &:hover {
-    background: #38bdf8;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+    background: #f97316;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.45);
     transform: translateY(-2px);
   }
 }
@@ -218,8 +219,8 @@
   @include focus-ring;
 
   &:hover {
-    border-color: var(--c-cyan);
-    color: var(--c-cyan);
+    border-color: #f97316;
+    color: #f97316;
   }
 }
 

@@ -68,17 +68,23 @@ export const particlePortraitVertex = /* glsl */ `
     vec3 warmAmber = vec3(0.96, 0.62, 0.14);  // Warm Amber (#f59e0b)
     vec3 deepOrange = vec3(0.97, 0.45, 0.09); // Energetic Orange (#f97316)
 
-    // Shimmer wave traveling across the face
+    // Restrained shimmer wave traveling across the face and silhouette
     float pulsePos = mod(uTime * uWaveSpeed, 4.5) - 2.0;
     float pulseDist = abs((pos.y + pos.x * 0.3) - pulsePos);
-    float waveLight = smoothstep(0.45, 0.0, pulseDist) * 0.8;
+    float waveLight = smoothstep(0.40, 0.0, pulseDist);
 
-    // Blend between golden amber, orange rim, and bright silver/gold facial core
+    // Warm amber-gold and energetic orange gradient for silhouette & hair
     vec3 goldMixed = mix(warmAmber, brightGold, sin(phase + uTime * 1.5) * 0.5 + 0.5);
-    goldMixed = mix(goldMixed, deepOrange, aParams.x * 0.45);
+    goldMixed = mix(goldMixed, deepOrange, aParams.x * 0.5);
 
-    float effectiveGold = clamp(aParams.x + waveLight * (1.0 - aParams.x * 0.5), 0.0, 1.0);
-    vColor = mix(aColor, goldMixed, effectiveGold);
+    // Face remains clean grayscale/silver; gold is concentrated on rim & outer silhouette (aParams.x)
+    float rimGold = smoothstep(0.12, 0.85, aParams.x);
+    float waveGold = waveLight * 0.35 * (0.15 + 0.85 * rimGold);
+    float effectiveGold = clamp(rimGold + waveGold, 0.0, 1.0);
+
+    // Base color with subtle luminous wave brighten
+    vec3 baseColor = aColor * (1.0 + waveLight * 0.4);
+    vColor = mix(baseColor, goldMixed, effectiveGold);
     vGoldFactor = effectiveGold;
 
     // 5. Alpha calculation: fully visible at rest (s=0), dissolves to 0 as you scroll down

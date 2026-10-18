@@ -107,10 +107,27 @@ h6 {
   }
 
   &:hover {
-    color: var(--c-cyan);
+    color: var(--c-orange, #f97316);
 
     svg {
       transform: translate(3px, -3px);
     }
+  }
+}
+
+// Global interactive hover: turns orange on hover
+a {
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    color: var(--c-orange, #f97316);
+  }
+}
+
+.text-hover-orange {
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    color: var(--c-orange, #f97316) !important;
   }
 }

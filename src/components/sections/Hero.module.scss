@@ -133,6 +133,12 @@
   text-transform: uppercase;
   color: rgba(215, 210, 200, 0.65);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transition: color 0.25s ease;
+  cursor: default;
+
+  &:hover {
+    color: #f97316;
+  }
 }
 
 // Middle Oversized Editorial Serif Name
@@ -158,6 +164,13 @@
   white-space: nowrap;
   user-select: none;
   overflow: hidden;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    color: #f97316;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95), 0 0 60px rgba(249, 115, 22, 0.5);
+  }
 
   @include mq(sm) {
     letter-spacing: -0.03em;
@@ -234,15 +247,15 @@
   @include focus-ring;
 
   &:hover {
-    color: #ffffff;
-    background: rgba(245, 158, 11, 0.08);
-    border-color: rgba(245, 158, 11, 0.4);
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.18);
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.08);
+    border-color: rgba(249, 115, 22, 0.5);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.25);
     transform: translateY(-2px);
 
     .ctaArrow {
       transform: translate(2px, -2px);
-      color: #fbbf24;
+      color: #f97316;
     }
   }
 
@@ -275,7 +288,7 @@
   @include focus-ring;
 
   &:hover {
-    color: #fbbf24;
+    color: #f97316;
 
     .scrollChevron {
       transform: translateY(3px);
@@ -306,6 +319,7 @@
 }
 
 .bottomCaption {
+  display: inline-block;
   font-family: var(--font-mono, monospace);
   font-size: 0.7rem;
   font-weight: 500;
@@ -313,4 +327,10 @@
   text-transform: uppercase;
   color: rgba(185, 180, 170, 0.45);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transition: color 0.2s ease;
+  cursor: default;
+
+  &:hover {
+    color: #f97316;
+  }
 }

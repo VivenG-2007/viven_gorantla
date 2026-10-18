@@ -7,17 +7,17 @@
 
 :root {
   --c-bg: #050608;
-  --c-surface: #111318;
-  --c-surface-2: #181b22;
-  --c-surface-3: #222631;
-  --c-line: rgba(245, 158, 11, 0.14);
-  --c-line-subtle: rgba(245, 158, 11, 0.07);
-  --c-text: #f4f2ec;
-  --c-text-dim: #b7bdc7;
-  --c-text-muted: #7e8695;
+  --c-surface: #101217;
+  --c-surface-2: #161920;
+  --c-surface-3: #20242e;
+  --c-line: rgba(255, 255, 255, 0.08);
+  --c-line-subtle: rgba(255, 255, 255, 0.04);
+  --c-text: #ffffff;
+  --c-text-dim: #b8c0cc;
+  --c-text-muted: #7e8796;
   --c-violet: #f97316;
-  --c-cyan: #f59e0b;       // Primary Golden/Amber accent
-  --c-cyan-glow: rgba(245, 158, 11, 0.32);
+  --c-cyan: #f97316;       // Primary Orange Accent
+  --c-cyan-glow: rgba(249, 115, 22, 0.35);
   --c-gold: #fbbf24;
   --c-orange: #f97316;
   --c-amber: #f59e0b;
@@ -25,6 +25,11 @@
   --c-paper: #f4f2ec;
   --c-ink: #0b0c10;
   --c-ink-dim: #454954;
+}
+
+::selection {
+  background: rgba(249, 115, 22, 0.35);
+  color: #ffffff;
 }
 
 [data-theme="paper"] {

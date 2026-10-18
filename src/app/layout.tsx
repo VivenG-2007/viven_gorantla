@@ -9,6 +9,7 @@ import { Lightbox } from "@/components/ui/Lightbox";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { person } from "@/content/profile";
 import { GlCanvas } from "@/components/gl/GlCanvasWrapper";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.scss";
 
@@ -202,6 +203,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ScrollProgress />
         <SkipLink />
         <SmoothScroll>
           <GlCanvas />
