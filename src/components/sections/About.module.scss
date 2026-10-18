@@ -99,16 +99,34 @@
 .thesisParagraph {
   font-family: var(--font-display);
   font-size: fluid(22, 34);
-  line-height: 1.35;
+  line-height: 1.45;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .thesisWord {
   display: inline-block;
-  opacity: 0.25;
+  margin-right: 0.32em;
+  opacity: 0.22;
   color: #7e8695;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  will-change: transform, opacity, color;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.22s ease,
+              opacity 0.22s ease;
+  cursor: default;
+
+  &:hover {
+    opacity: 1 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    text-shadow: 0 0 14px rgba(245, 158, 11, 0.45);
+  }
+
+  &.highlightWord {
+    font-weight: 700;
+  }
 }
 
 .portraitCol {
@@ -267,4 +285,20 @@
 .cgpaSource {
   font-weight: 400;
   color: var(--c-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thesisWord {
+    opacity: 1 !important;
+    color: #f4f2ec !important;
+    transform: none !important;
+  }
+}
+
+:global(.reduced-motion) {
+  .thesisWord {
+    opacity: 1 !important;
+    color: #f4f2ec !important;
+    transform: none !important;
+  }
 }

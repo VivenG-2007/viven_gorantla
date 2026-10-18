@@ -34,23 +34,64 @@ export function About() {
     if (spanList.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Word by word scroll scrubbed highlight
+      // Word by word scroll scrubbed highlight with subtle kinetic lift
       gsap.fromTo(
         spanList,
-        { opacity: 0.2, color: "#7e8695" },
+        {
+          opacity: 0.2,
+          color: "#7e8695",
+          y: 6,
+        },
         {
           opacity: 1,
           color: "#f4f2ec",
+          y: 0,
+          stagger: 0.035,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: wordsEl,
+            start: "top 78%",
+            end: "bottom 48%",
+            scrub: 0.7,
+          },
+        }
+      );
+
+      // Distinct warm amber glow for key project names and systems
+      const highlightSpans = wordsEl.querySelectorAll(`.${styles.highlightWord}`);
+      if (highlightSpans.length > 0) {
+        gsap.to(highlightSpans, {
+          color: "#fbbf24",
           stagger: 0.05,
           ease: "none",
           scrollTrigger: {
             trigger: wordsEl,
-            start: "top 75%",
+            start: "top 62%",
             end: "bottom 45%",
-            scrub: 0.6,
+            scrub: 0.7,
           },
-        }
-      );
+        });
+      }
+
+      // Subtle editorial header reveal
+      const header = el.querySelector(`.${styles.headerBlock}`);
+      if (header) {
+        gsap.fromTo(
+          header,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: header,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
 
       // Subtle portrait parallax
       if (portraitFrameRef.current) {
@@ -64,6 +105,27 @@ export function About() {
             scrub: true,
           },
         });
+      }
+
+      // Subtle fact cards staggered entrance
+      const factCards = el.querySelectorAll(`.${styles.factCard}`);
+      if (factCards.length > 0) {
+        gsap.fromTo(
+          factCards,
+          { opacity: 0, y: 22 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: factCards[0],
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
       }
     }, el);
 
@@ -99,11 +161,24 @@ export function About() {
             <p className={styles.shortBio}>{siteContent.about.short}</p>
 
             <div ref={thesisWordsRef} className={styles.thesisParagraph} aria-label={thesisText}>
-              {words.map((w, i) => (
-                <span key={i} className={styles.thesisWord}>
-                  {w}{" "}
-                </span>
-              ))}
+              {words.map((w, i) => {
+                const clean = w.replace(/[^a-zA-Z]/g, "");
+                const isHighlight =
+                  clean === "PatchLine" ||
+                  clean === "Crisis" ||
+                  clean === "Commander" ||
+                  clean === "BLACKBOX" ||
+                  clean === "AI";
+
+                return (
+                  <span
+                    key={i}
+                    className={`${styles.thesisWord} ${isHighlight ? styles.highlightWord : ""}`}
+                  >
+                    {w}
+                  </span>
+                );
+              })}
             </div>
           </div>
 

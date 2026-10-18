@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useMotionStore } from "@/lib/store";
 import { MotionToggle } from "./MotionToggle";
 import { ArrowUpRight } from "lucide-react";
@@ -56,7 +57,16 @@ export function Navigation() {
           onClick={(e) => handleNavClick(e, "#intro")}
           aria-label="Viven Gorantla - Home"
         >
-          <span className={styles.markBadge}>VG</span>
+          <span className={styles.markBadge}>
+            <Image
+              src="/icon.png"
+              alt="Viven Gorantla Logo"
+              width={34}
+              height={34}
+              className={styles.markAvatar}
+              priority
+            />
+          </span>
           <div className={styles.markInfo}>
             <span className={styles.markName}>
               <span className="live-dot" />
