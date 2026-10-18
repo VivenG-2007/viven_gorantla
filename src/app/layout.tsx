@@ -9,6 +9,7 @@ import { Lightbox } from "@/components/ui/Lightbox";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { person } from "@/content/profile";
 import { GlCanvas } from "@/components/gl/GlCanvasWrapper";
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.scss";
 
 const spaceGrotesk = Space_Grotesk({
@@ -211,6 +212,7 @@ export default function RootLayout({
           <CustomCursor />
           <div id="main-content">{children}</div>
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
