@@ -17,9 +17,9 @@ export default function Hero3DView({ gpuTier }: Hero3DViewProps) {
       <HeroScene
         quality={{
           preset: gpuTier,
-          dpr: gpuTier === "high" ? 1.75 : gpuTier === "medium" ? 1.5 : 1.2,
-          particles: gpuTier === "high" ? 45000 : gpuTier === "medium" ? 25000 : 12000,
-          bloom: gpuTier === "high",
+          dpr: gpuTier === "high" ? 1.2 : 1.0,
+          particles: gpuTier === "high" ? 10000 : gpuTier === "medium" ? 6500 : 3500,
+          bloom: false,
           portalShaders: gpuTier !== "low",
         }}
       />

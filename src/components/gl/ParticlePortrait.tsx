@@ -39,12 +39,12 @@ export function ParticlePortrait({
   const gridResolution = useMemo(() => {
     switch (quality.preset) {
       case "high":
-        return { width: 190, height: 240, haloCount: 750 };
+        return { width: 110, height: 140, haloCount: 180 };
       case "medium":
-        return { width: 145, height: 185, haloCount: 400 };
+        return { width: 90, height: 115, haloCount: 100 };
       case "low":
       default:
-        return { width: 110, height: 140, haloCount: 200 };
+        return { width: 70, height: 90, haloCount: 50 };
     }
   }, [quality.preset]);
 
@@ -213,16 +213,26 @@ export function ParticlePortrait({
       uScatterRadius: { value: 0.95 },
       uScatterStrength: { value: 0.55 },
       uScrollProgress: { value: 0 },
-      uBaseSize: { value: quality.preset === "high" ? 6.5 : 7.5 },
-      uDpr: { value: Math.min(window?.devicePixelRatio || 1, 2) },
+      uBaseSize: { value: 5.5 },
+      uDpr: { value: 1.0 },
       uWaveSpeed: { value: 0.5 },
       uOpacity: { value: 0.95 },
     }),
-    [quality.preset]
+    []
   );
 
   // Real-time animation loop
   useFrame((state, delta) => {
+    // 1. Offscreen culling: If user scrolled past hero, pause rendering to save 100% GPU
+    if (scrollProgress > 0.82) {
+      if (groupRef.current && groupRef.current.visible) {
+        groupRef.current.visible = false;
+      }
+      return;
+    } else if (groupRef.current && !groupRef.current.visible) {
+      groupRef.current.visible = true;
+    }
+
     const t = state.clock.getElapsedTime();
 
     if (shaderMatRef.current) {

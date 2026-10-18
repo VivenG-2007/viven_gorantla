@@ -77,7 +77,7 @@ export const particlePortraitVertex = /* glsl */ `
     // Point size calculation with perspective attenuation & DPR scaling
     float sizePulse = 1.0 + 0.2 * sin(uTime * 2.5 * aParams.y + phase);
     float pSize = uBaseSize * aParams.z * sizePulse * uDpr;
-    gl_PointSize = max(1.5, pSize * (240.0 / -mvPosition.z));
+    gl_PointSize = clamp(pSize * (190.0 / -mvPosition.z), 1.5, 9.5);
   }
 `;
 

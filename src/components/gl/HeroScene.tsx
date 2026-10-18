@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { ParticlePortrait } from "./ParticlePortrait";
 import type { QualityConfig } from "./quality";
 
@@ -23,19 +22,6 @@ export function HeroScene({ quality }: HeroSceneProps) {
 
       {/* Dynamic 3D Particle Portrait */}
       <ParticlePortrait quality={quality} imageSrc="/images/portraits/viven-signature.jpg" />
-
-      {/* Subtle Post-processing (High quality tier) */}
-      {quality.bloom && (
-        <EffectComposer multisampling={0} enableNormalPass={false}>
-          <Bloom
-            luminanceThreshold={0.82}
-            luminanceSmoothing={0.3}
-            intensity={0.4}
-            mipmapBlur
-          />
-          <Vignette eskil={false} offset={0.2} darkness={0.7} />
-        </EffectComposer>
-      )}
     </>
   );
 }

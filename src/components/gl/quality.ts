@@ -61,24 +61,24 @@ export async function resolveQualityPreset(motionOn: boolean): Promise<QualityCo
     if (gpuTier.tier >= 2 && !isMobile) {
       return {
         preset: "high",
-        dpr: Math.min(window.devicePixelRatio || 1, 1.75),
-        particles: 5000,
-        bloom: true,
+        dpr: Math.min(window.devicePixelRatio || 1, 1.25),
+        particles: 10000,
+        bloom: false,
         portalShaders: true,
       };
     } else if (gpuTier.tier >= 1 && !isMobile) {
       return {
         preset: "medium",
-        dpr: Math.min(window.devicePixelRatio || 1, 1.5),
-        particles: 2200,
+        dpr: 1.0,
+        particles: 6500,
         bloom: false,
         portalShaders: true,
       };
     } else {
       return {
         preset: "low",
-        dpr: Math.min(window.devicePixelRatio || 1, 1.25),
-        particles: 800,
+        dpr: 1.0,
+        particles: 3500,
         bloom: false,
         portalShaders: false,
       };
@@ -86,8 +86,8 @@ export async function resolveQualityPreset(motionOn: boolean): Promise<QualityCo
   } catch {
     return {
       preset: "medium",
-      dpr: 1.5,
-      particles: 2000,
+      dpr: 1.0,
+      particles: 6500,
       bloom: false,
       portalShaders: true,
     };
