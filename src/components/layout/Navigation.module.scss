@@ -7,19 +7,20 @@
   right: 0;
   z-index: 50;
   padding: 1.25rem 1.5rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 
   @include mq(lg) {
-    padding: 1.5rem 3rem;
+    padding: 1.25rem 3rem;
   }
 
   &.scrolled {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    background: rgba(5, 6, 8, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--c-line);
+    background: rgba(5, 6, 8, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -29,8 +30,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
+// Brand wordmark
 .wordmark {
   display: flex;
   align-items: center;
@@ -43,38 +46,65 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: var(--c-surface-2);
-  border: 1px solid var(--c-line);
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--c-cyan);
+  color: #fbbf24;
   letter-spacing: 0.05em;
-}
+  transition: all 0.25s ease;
 
-.markText {
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--c-text);
-  display: none;
-  align-items: center;
-
-  @include mq(sm) {
-    display: inline-flex;
+  &:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
   }
 }
 
+.markInfo {
+  display: none;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  @include mq(sm) {
+    display: flex;
+  }
+}
+
+.markName {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #f7f4ec;
+  display: inline-flex;
+  align-items: center;
+}
+
+.markSub {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: rgba(185, 180, 170, 0.55);
+  text-transform: uppercase;
+}
+
+// Desktop Links
 .desktopNav {
   display: none;
   align-items: center;
-  gap: 1.75rem;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  @include mq(xl) {
+  @include mq(md) {
     display: flex;
   }
 }
@@ -82,56 +112,75 @@
 .navLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: var(--c-text-dim);
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.775rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(220, 215, 205, 0.7);
   text-decoration: none;
-  transition: all 0.2s ease;
-  padding: 0.25rem 0.4rem;
-  border-radius: 4px;
+  transition: all 0.22s ease;
+  border: 1px solid transparent;
   @include focus-ring;
 
   .numeral {
     font-size: 0.6875rem;
-    color: var(--c-text-muted);
+    color: rgba(185, 180, 170, 0.45);
+    transition: color 0.2s ease;
   }
 
-  &:hover,
-  &.active {
-    color: var(--c-text);
-    background: rgba(255, 255, 255, 0.04);
+  .linkLabel {
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
 
     .numeral {
-      color: var(--c-cyan);
+      color: #fbbf24;
+    }
+  }
+
+  &.active {
+    color: #ffffff;
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.25);
+
+    .numeral {
+      color: #fbbf24;
     }
   }
 }
 
+// Action items
 .navActions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .contactBtn {
   display: none;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.35rem 0.8rem;
+  padding: 0.42rem 0.95rem;
   border-radius: 9999px;
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid rgba(34, 211, 238, 0.3);
-  font-family: var(--font-mono);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-family: var(--font-mono, monospace);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--c-cyan);
+  letter-spacing: 0.04em;
+  color: #fbbf24;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.08);
   @include focus-ring;
 
-  @include mq(md) {
+  @include mq(sm) {
     display: inline-flex;
   }
 
@@ -140,9 +189,11 @@
   }
 
   &:hover {
-    background: rgba(34, 211, 238, 0.16);
-    border-color: var(--c-cyan);
-    box-shadow: 0 0 16px rgba(34, 211, 238, 0.25);
+    background: rgba(245, 158, 11, 0.18);
+    border-color: #fbbf24;
+    color: #ffffff;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.28);
+    transform: translateY(-1px);
 
     .contactArrow {
       transform: translate(2px, -2px);
@@ -153,14 +204,14 @@
 .deckHint {
   display: none;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.65rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--c-line);
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--c-text-dim);
+  gap: 0.45rem;
+  padding: 0.38rem 0.65rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.725rem;
+  color: rgba(220, 215, 205, 0.75);
   transition: all 0.2s ease;
   @include focus-ring;
 
@@ -169,17 +220,18 @@
   }
 
   &:hover {
-    color: var(--c-text);
-    border-color: rgba(183, 189, 199, 0.35);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
   }
 
   .kbd {
     padding: 0.1rem 0.35rem;
-    background: var(--c-surface-2);
-    border: 1px solid var(--c-line);
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
     border-radius: 3px;
     font-size: 0.6875rem;
-    color: var(--c-cyan);
+    color: #fbbf24;
   }
 }
 
@@ -189,21 +241,22 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.4rem 0.85rem;
-  min-height: 44px;
-  min-width: 44px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-line);
-  border-radius: 4px;
-  font-family: var(--font-mono);
+  min-height: 38px;
+  min-width: 38px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--c-text);
+  color: #f7f4ec;
   transition: all 0.2s ease;
   @include focus-ring;
 
   &:hover {
-    border-color: var(--c-cyan);
-    color: var(--c-cyan);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.06);
   }
 }
 

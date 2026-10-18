@@ -3,10 +3,17 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useMotionStore } from "@/lib/store";
-import { navItems } from "@/content/site";
 import { MotionToggle } from "./MotionToggle";
 import { ArrowUpRight } from "lucide-react";
 import styles from "./Navigation.module.scss";
+
+const NAV_LINKS = [
+  { label: "Work", href: "#work", numeral: "01" },
+  { label: "About", href: "#about", numeral: "02" },
+  { label: "Systems", href: "#systems", numeral: "03" },
+  { label: "Proof & Awards", href: "#proof", numeral: "04" },
+  { label: "Contact", href: "#contact", numeral: "05" },
+];
 
 export function Navigation() {
   const lenis = useMotionStore((s) => s.lenis);
@@ -42,21 +49,26 @@ export function Navigation() {
   return (
     <header className={`${styles.navWrap} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.navBar}>
+        {/* Brand Monogram & Name */}
         <Link
           href="#intro"
           className={styles.wordmark}
           onClick={(e) => handleNavClick(e, "#intro")}
-          aria-label="VG Viven Gorantla - Home"
+          aria-label="Viven Gorantla - Home"
         >
           <span className={styles.markBadge}>VG</span>
-          <span className={styles.markText}>
-            <span className="live-dot" />
-            VIVEN GORANTLA
-          </span>
+          <div className={styles.markInfo}>
+            <span className={styles.markName}>
+              <span className="live-dot" />
+              VIVEN GORANTLA
+            </span>
+            <span className={styles.markSub}>STUDENT &amp; BUILDER</span>
+          </div>
         </Link>
 
+        {/* Primary Navigation Links */}
         <nav className={styles.desktopNav} aria-label="Main navigation">
-          {navItems.slice(1, 7).map((item) => (
+          {NAV_LINKS.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -66,11 +78,12 @@ export function Navigation() {
               onClick={(e) => handleNavClick(e, item.href)}
             >
               <span className={styles.numeral}>{item.numeral}</span>
-              <span>{item.label}</span>
+              <span className={styles.linkLabel}>{item.label}</span>
             </a>
           ))}
         </nav>
 
+        {/* Action Controls */}
         <div className={styles.navActions}>
           <button
             type="button"
@@ -90,7 +103,7 @@ export function Navigation() {
             onClick={(e) => handleNavClick(e, "#contact")}
           >
             <span>Let&apos;s talk</span>
-            <ArrowUpRight size={14} className={styles.contactArrow} />
+            <ArrowUpRight size={13} className={styles.contactArrow} />
           </a>
 
           <MotionToggle />

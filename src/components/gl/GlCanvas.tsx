@@ -10,19 +10,15 @@ import styles from "./GlCanvas.module.scss";
 export function GlCanvas() {
   const motionOn = useMotionStore((s) => s.motionOn);
   const setGpuTier = useMotionStore((s) => s.setGpuTier);
-  const [quality, setQuality] = useState<QualityConfig | null>(null);
+  const [quality, setQuality] = useState<QualityConfig>(() => resolveQualityPreset(true));
   const [contextLost, setContextLost] = useState<boolean>(false);
   const [tabVisible, setTabVisible] = useState<boolean>(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let mounted = true;
-    resolveQualityPreset(motionOn).then((q) => {
-      if (mounted) {
-        setQuality(q);
-        setGpuTier(q.preset);
-      }
-    });
+    const q = resolveQualityPreset(motionOn);
+    setQuality(q);
+    setGpuTier(q.preset);
 
     const handleVisibilityChange = () => {
       setTabVisible(!document.hidden);
@@ -31,7 +27,6 @@ export function GlCanvas() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      mounted = false;
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [motionOn, setGpuTier]);

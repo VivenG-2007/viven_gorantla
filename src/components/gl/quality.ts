@@ -1,5 +1,3 @@
-import { getGPUTier, type TierResult } from "detect-gpu";
-
 export type QualityPreset = "high" | "medium" | "low" | "off";
 
 export interface QualityConfig {
@@ -10,7 +8,7 @@ export interface QualityConfig {
   portalShaders: boolean;
 }
 
-export async function resolveQualityPreset(motionOn: boolean): Promise<QualityConfig> {
+export function resolveQualityPreset(motionOn: boolean): QualityConfig {
   if (typeof window === "undefined" || !motionOn) {
     return {
       preset: "off",
@@ -23,58 +21,38 @@ export async function resolveQualityPreset(motionOn: boolean): Promise<QualityCo
 
   // Check data saver
   const nav = navigator as any;
-  if (nav.connection?.saveData) {
-    return {
-      preset: "off",
-      dpr: 1,
-      particles: 0,
-      bloom: false,
-      portalShaders: false,
-    };
-  }
-  // Fast path: automated testing or headless audit
-  if (/lighthouse|headlesschrome/i.test(navigator.userAgent)) {
-    return {
-      preset: "off",
-      dpr: 1,
-      particles: 0,
-      bloom: false,
-      portalShaders: false,
-    };
-  }
-
-  // Fast path: mobile screen widths
-  if (window.innerWidth < 768) {
+  if (nav?.connection?.saveData) {
     return {
       preset: "low",
-      dpr: Math.min(window.devicePixelRatio || 1, 1.25),
-      particles: 600,
+      dpr: 1,
+      particles: 3000,
       bloom: false,
       portalShaders: false,
     };
   }
 
-  try {
-    const gpuTier: TierResult = await getGPUTier();
-    const isMobile = gpuTier.isMobile || window.innerWidth < 768;
+  const isMobile = window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (gpuTier.tier >= 2 && !isMobile) {
+  // Synchronous, zero-network WebGL capability detection (never hangs or relies on CDN)
+  try {
+    const canvas = document.createElement("canvas");
+    const gl = (canvas.getContext("webgl2") || canvas.getContext("webgl")) as WebGLRenderingContext | null;
+    if (!gl) {
       return {
-        preset: "high",
-        dpr: Math.min(window.devicePixelRatio || 1, 1.25),
-        particles: 10000,
+        preset: "off",
+        dpr: 1,
+        particles: 0,
         bloom: false,
-        portalShaders: true,
+        portalShaders: false,
       };
-    } else if (gpuTier.tier >= 1 && !isMobile) {
-      return {
-        preset: "medium",
-        dpr: 1.0,
-        particles: 6500,
-        bloom: false,
-        portalShaders: true,
-      };
-    } else {
+    }
+
+    const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+    const renderer = debugInfo
+      ? (gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) as string).toLowerCase()
+      : "";
+
+    if (isMobile) {
       return {
         preset: "low",
         dpr: 1.0,
@@ -83,11 +61,32 @@ export async function resolveQualityPreset(motionOn: boolean): Promise<QualityCo
         portalShaders: false,
       };
     }
-  } catch {
+
+    // High performance GPUs: dedicated Nvidia, AMD, Apple Silicon
+    const isHighTier = /nvidia|geforce|rtx|gtx|radeon rx|apple m/i.test(renderer);
+    if (isHighTier) {
+      return {
+        preset: "high",
+        dpr: Math.min(window.devicePixelRatio || 1, 1.25),
+        particles: 10000,
+        bloom: false,
+        portalShaders: true,
+      };
+    }
+
+    // Standard integrated laptops (Intel Iris / UHD / AMD Vega)
     return {
       preset: "medium",
       dpr: 1.0,
       particles: 6500,
+      bloom: false,
+      portalShaders: true,
+    };
+  } catch {
+    return {
+      preset: isMobile ? "low" : "medium",
+      dpr: 1.0,
+      particles: isMobile ? 3500 : 6500,
       bloom: false,
       portalShaders: true,
     };
