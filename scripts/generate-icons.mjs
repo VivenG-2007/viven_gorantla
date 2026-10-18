@@ -3,7 +3,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 async function generateIcons() {
-  const input = path.resolve('public/images/portraits/viven-professional.jpg');
+  const input = path.resolve('public/images/portraits/viven-hero-clean.png');
   if (!fs.existsSync(input)) {
     throw new Error(`File not found: ${input}`);
   }
@@ -11,9 +11,9 @@ async function generateIcons() {
   const size = 512;
   const radius = size / 2;
 
-  // Extract square crop around the face (width 334, height 418, crop from top 15)
+  // Extract square crop around the face from the masked hero cutout (width 334, height 334 from top 20)
   const faceBuffer = await sharp(input)
-    .extract({ left: 0, top: 15, width: 334, height: 334 })
+    .extract({ left: 0, top: 20, width: 334, height: 334 })
     .resize(size, size, { fit: 'cover' })
     .toBuffer();
 
