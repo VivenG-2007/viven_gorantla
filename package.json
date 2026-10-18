@@ -1,0 +1,49 @@
+{
+  "name": "viven-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "analyze": "cross-env ANALYZE=true next build",
+    "images": "node scripts/optimize-images.mjs",
+    "evidence": "python scripts/prepare_evidence.py",
+    "lhci": "lhci autorun"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@next/bundle-analyzer": "^15.2.1",
+    "@react-three/drei": "^10.0.4",
+    "@react-three/fiber": "^9.0.4",
+    "@react-three/postprocessing": "^3.0.4",
+    "clsx": "^2.1.1",
+    "detect-gpu": "^5.0.38",
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.21",
+    "lucide-react": "^1.16.0",
+    "motion": "^12.4.7",
+    "next": "^15.2.1",
+    "postprocessing": "^6.36.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sass": "^1.85.1",
+    "sharp": "^0.33.5",
+    "three": "^0.174.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.174.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.1",
+    "lighthouse": "^13.5.0",
+    "typescript": "^5.8.2"
+  }
+}

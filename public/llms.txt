@@ -1,0 +1,36 @@
+# Viven Gorantla — AI Developer Tools & Backend Systems Engineer
+
+> [Canonical Portfolio](https://vivengorantla.dev)
+> [GitHub Profile](https://github.com/VivenG-2007)
+> [LinkedIn Profile](https://www.linkedin.com/in/viven-gorantla)
+> [LeetCode Profile](https://leetcode.com/u/m5oBHEqoAY/)
+
+## Summary
+Viven Gorantla is a second-year B.Tech student (2025–2029) at Geethanjali College of Engineering and Technology (GCET), Hyderabad, India. He builds AI-powered developer tools, agentic workflows, deterministic simulation systems, and cloud-aware backend infrastructure. His engineering ethos centers on: "The AI proposes. Software verifies. A human approves."
+
+## Core Projects
+
+- [PatchLine - AI-Assisted Code Security & Triage](https://github.com/VivenG-2007/patchline.ai): Static analysis findings (Semgrep, Tree-sitter) ground LLM candidate fix generation. Candidates pass an automated verification step before submitting human-reviewed pull requests.
+- [Crisis Commander - Advisory Crisis Digital Twin](https://vivengorantla.dev/work/crisis-commander): Deterministic fixed-point simulation cascade engine, risk and blast-radius engines, Zod-validated structured AI proposals, and COMMANDER-level RBAC authorization for critical actions.
+- [BLACKBOX AI 1.0 - 1st Place Winner](https://vivengorantla.dev/work/blackbox-ai): 1st Place at GCET IEEE Student Branch / IEEE Computer Society hackathon (6–7 Oct 2026, team localhost:420, per certificate). Empirical black-box probing under a fixed query budget.
+- [Reusable Authentication Microservice](https://vivengorantla.dev/work/auth-service): RS256 JWT with refresh-token rotation, HttpOnly cookies, RBAC, Redis-backed rate limiting, multi-device revocation.
+- [DBForge AI - Visual Database Schema Generator](https://vivengorantla.dev/work/dbforge-ai): Translates visual ER diagrams and natural language prompts into validated PostgreSQL schemas deployed directly to Supabase.
+
+## Verified Proofs & Milestones
+- [BLACKBOX AI 1.0 Certificate](https://vivengorantla.dev/#proof): 1st Place (per certificate, IEEE SB).
+- [LaunchpadX-2026 Trophy & Certificate](https://vivengorantla.dev/#proof): 9th Position (trophy and certificate; 9th of 240 teams self-reported).
+- [DECODEX 2.0 Certificate of Merit](https://vivengorantla.dev/#proof): Certificate of Merit (two-day AI agent workshop).
+- [AWS Training](https://vivengorantla.dev/#proof): AWS SimuLearn: Cloud Practitioner & AWS Cloud Quest: Cloud Practitioner (Training completions).
+- [Coding Practice](https://vivengorantla.dev/#coding): 273 problems solved in C on GCET Hive; LeetCode 50 Days Badge 2026.
+
+## Technology Stack
+- Languages: Python, TypeScript, JavaScript, C, C++, SQL, Java
+- Backend & AI: FastAPI, Node.js, Express, Groq (Llama 3.3 70B), Gemini API, Featherless AI, Semgrep, Tree-sitter
+- Databases & Cache: PostgreSQL, Supabase, MongoDB Atlas, Redis, ChromaDB, Elasticsearch
+- Infra & Cloud: Docker, Docker Compose, Render, Vercel, Azure, AWS
+- Security Patterns: RS256 JWT, Refresh Token Rotation, HttpOnly cookies, RBAC, Redis Rate Limiting
+
+## Contact
+- [GitHub Profile](https://github.com/VivenG-2007)
+- [LinkedIn Profile](https://www.linkedin.com/in/viven-gorantla)
+- [LeetCode Profile](https://leetcode.com/u/m5oBHEqoAY/)

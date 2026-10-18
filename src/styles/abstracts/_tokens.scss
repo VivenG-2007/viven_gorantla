@@ -1,0 +1,31 @@
+// Obsidian Signal Lab Design Tokens
+$z-indices: (
+  canvas: 0,
+  content: 1,
+  nav: 50,
+  overlay: 60,
+  command-deck: 70,
+  lightbox: 80,
+  cursor: 100,
+);
+
+// SCSS variables reflecting color system
+$c-bg: #050608;
+$c-surface: #111318;
+$c-surface-2: #181b22;
+$c-surface-3: #222631;
+$c-line: rgba(183, 189, 199, 0.16);
+$c-line-subtle: rgba(183, 189, 199, 0.08);
+$c-text: #f4f2ec;
+$c-text-dim: #b7bdc7;
+$c-text-muted: #7e8695;
+$c-violet: #8b5cf6;
+$c-violet-glow: rgba(139, 92, 246, 0.28);
+$c-cyan: #22d3ee;
+$c-cyan-glow: rgba(34, 211, 238, 0.28);
+$c-magenta: #f472d0;
+$c-paper: #f4f2ec;
+$c-ink: #0b0c10;
+$c-ink-dim: #454954;
+$c-amber: #f59e0b;
+$c-emerald: #10b981;

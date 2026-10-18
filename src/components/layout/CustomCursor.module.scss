@@ -1,0 +1,51 @@
+@use "abstracts" as *;
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(34, 211, 238, 0.45);
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease,
+    border-color 0.25s ease;
+  will-change: transform;
+
+  &.active {
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    margin-left: -22px;
+    background: rgba(34, 211, 238, 0.08);
+    border-color: var(--c-cyan);
+  }
+
+  &.hasLabel {
+    width: 64px;
+    height: 64px;
+    margin-top: -32px;
+    margin-left: -32px;
+    background: rgba(5, 6, 8, 0.9);
+    border: 1px solid var(--c-cyan);
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.3);
+  }
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--c-cyan);
+  text-transform: uppercase;
+}

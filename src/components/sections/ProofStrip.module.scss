@@ -1,0 +1,120 @@
+@use "abstracts" as *;
+
+.proofStrip {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(183, 189, 199, 0.14);
+  border-bottom: 1px solid rgba(183, 189, 199, 0.14);
+  background: rgba(8, 10, 14, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr) auto;
+  }
+}
+
+.statItem {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid rgba(183, 189, 199, 0.1);
+
+  @include mq(sm) {
+    border-right: 1px solid rgba(183, 189, 199, 0.1);
+  }
+
+  @include mq(lg) {
+    border-bottom: none;
+  }
+}
+
+.statNumber {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  margin-bottom: 0.35rem;
+
+  strong {
+    font-family: var(--font-display);
+    font-size: fluid(28, 40);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--c-text);
+    letter-spacing: -0.03em;
+  }
+}
+
+.statAccent {
+  font-family: var(--font-mono);
+  font-size: fluid(18, 24);
+  font-weight: 700;
+  color: var(--c-cyan);
+}
+
+.statDesc {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--c-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.impactAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: rgba(34, 211, 238, 0.04);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  @include focus-ring;
+
+  @include mq(sm) {
+    grid-column: 1 / -1;
+  }
+
+  @include mq(lg) {
+    grid-column: auto;
+    border-left: 1px solid rgba(183, 189, 199, 0.1);
+  }
+
+  &:hover {
+    background: rgba(34, 211, 238, 0.12);
+
+    .impactArrow {
+      transform: translate(3px, -3px);
+      color: var(--c-cyan);
+    }
+
+    .impactText {
+      color: var(--c-text);
+    }
+  }
+}
+
+.impactText {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  color: var(--c-text-dim);
+  transition: color 0.2s ease;
+}
+
+.impactArrow {
+  color: var(--c-cyan);
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}

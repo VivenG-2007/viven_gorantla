@@ -1,0 +1,67 @@
+@use "abstracts" as *;
+@use "base/reset";
+@use "base/typography";
+@use "base/lenis";
+@use "base/a11y";
+@use "base/utilities";
+
+:root {
+  --c-bg: #050608;
+  --c-surface: #111318;
+  --c-surface-2: #181b22;
+  --c-surface-3: #222631;
+  --c-line: rgba(183, 189, 199, 0.16);
+  --c-line-subtle: rgba(183, 189, 199, 0.08);
+  --c-text: #f4f2ec;
+  --c-text-dim: #b7bdc7;
+  --c-text-muted: #7e8695;
+  --c-violet: #8b5cf6;
+  --c-cyan: #22d3ee;
+  --c-magenta: #f472d0;
+  --c-paper: #f4f2ec;
+  --c-ink: #0b0c10;
+  --c-ink-dim: #454954;
+}
+
+[data-theme="paper"] {
+  --c-bg: #f4f2ec;
+  --c-surface: #eae6dc;
+  --c-surface-2: #ded9cd;
+  --c-surface-3: #d1cbc0;
+  --c-line: rgba(11, 12, 16, 0.14);
+  --c-line-subtle: rgba(11, 12, 16, 0.08);
+  --c-text: #0b0c10;
+  --c-text-dim: #4b5262;
+  --c-text-muted: #6b7280;
+  --c-cyan: #0284c7;
+  --c-violet: #6d28d9;
+}
+
+// Subtle film grain
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.025;
+  background-image: radial-gradient(#ffffff 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+// Scrim for WebGL legibility
+.scrim-bg {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(5, 6, 8, 0.75) 0%, rgba(5, 6, 8, 0.95) 100%);
+    pointer-events: none;
+  }
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}

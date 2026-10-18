@@ -1,0 +1,386 @@
+@use "abstracts" as *;
+
+.workSection {
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-line);
+  position: relative;
+  z-index: 5;
+}
+
+.headerBlock {
+  max-width: 820px;
+  margin-bottom: 4rem;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.labelSub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: fluid(32, 54);
+  line-height: 1.05;
+  color: var(--c-text);
+  margin-bottom: 1rem;
+
+  em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--c-cyan);
+  }
+}
+
+.sectionLead {
+  font-size: fluid(16, 20);
+  line-height: 1.6;
+  color: var(--c-text-dim);
+}
+
+.portalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.portalCard {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(34, 211, 238, 0.35);
+  }
+}
+
+.portalGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding: fluid(24, 48);
+
+  @include mq(lg) {
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.orderNumeral {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--c-cyan);
+  letter-spacing: -0.02em;
+}
+
+.projectTitle {
+  font-family: var(--font-display);
+  font-size: fluid(28, 44);
+  font-weight: 800;
+  line-height: 1.08;
+  margin-bottom: 0.5rem;
+}
+
+.titleLink {
+  color: var(--c-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  @include focus-ring;
+
+  &:hover {
+    color: var(--c-cyan);
+  }
+}
+
+.category {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--c-violet);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.pitch {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--c-text);
+  margin-bottom: 1.5rem;
+}
+
+.problemBox {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--c-cyan);
+  padding: 0.875rem 1.25rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--c-text-dim);
+  }
+}
+
+.problemLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-cyan);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.stackChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.techChip {
+  padding: 0.3rem 0.65rem;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-text-dim);
+}
+
+.actionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.caseStudyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  background: var(--c-cyan);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #050608;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  @include focus-ring;
+
+  &:hover {
+    background: #38bdf8;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.35);
+    transform: translateY(-2px);
+  }
+}
+
+.sourceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--c-text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  @include focus-ring;
+
+  &:hover {
+    border-color: var(--c-cyan);
+    color: var(--c-cyan);
+  }
+}
+
+.visualCol {
+  display: flex;
+  justify-content: center;
+}
+
+.portalVisualFrame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  background: #090b10;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  @include focus-ring;
+
+  &:hover {
+    border-color: var(--c-cyan);
+    transform: translateY(-3px);
+
+    .inspectHint {
+      color: var(--c-cyan);
+    }
+
+    .workArtworkArrow {
+      background: var(--c-cyan);
+      color: #050608;
+      border-color: var(--c-cyan);
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.workBrowserBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background: rgba(17, 19, 24, 0.95);
+  border-bottom: 1px solid rgba(183, 189, 199, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--c-text-muted);
+  position: relative;
+  z-index: 3;
+}
+
+.browserDots {
+  display: flex;
+  gap: 5px;
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(183, 189, 199, 0.25);
+  }
+}
+
+.browserDomain {
+  color: var(--c-text-dim);
+  letter-spacing: 0.05em;
+}
+
+.browserExt {
+  color: var(--c-cyan);
+  font-size: 0.75rem;
+}
+
+.workArtworkArrow {
+  position: absolute;
+  top: 3.25rem;
+  right: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(5, 6, 8, 0.75);
+  border: 1px solid rgba(183, 189, 199, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-dim);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.portalCanvasMock {
+  width: 100%;
+  height: 100%;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  flex: 1;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(183, 189, 199, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(183, 189, 199, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.archGraphic {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.graphicIcon {
+  color: var(--c-cyan);
+}
+
+.terminalLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--c-text-dim);
+  }
+}
+
+.portalFooter {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(183, 189, 199, 0.1);
+  padding-top: 1rem;
+}
+
+.portalBadge {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+}
+
+.inspectHint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-text-dim);
+  transition: color 0.2s ease;
+}

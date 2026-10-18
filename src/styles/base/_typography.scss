@@ -1,0 +1,116 @@
+@use "../abstracts" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--c-text);
+  line-height: 1.05;
+
+  em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--c-cyan);
+    font-family: inherit;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+}
+
+.font-body {
+  font-family: var(--font-body, "Inter", sans-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono, "Geist Mono", monospace);
+}
+
+.font-serif {
+  font-family: var(--font-serif, "Cormorant Garamond", Georgia, serif);
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-cyan, #22d3ee);
+  margin-bottom: 1.25rem;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+.live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseLiveDot 2.2s infinite ease-in-out;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+@keyframes pulseLiveDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+    box-shadow: 0 0 8px #10b981;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+    box-shadow: 0 0 14px #10b981, 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+}
+
+.signal-text {
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.08em;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-text-dim);
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: var(--c-cyan);
+
+    svg {
+      transform: translate(3px, -3px);
+    }
+  }
+}

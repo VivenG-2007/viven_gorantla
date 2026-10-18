@@ -1,0 +1,45 @@
+@use "abstracts" as *;
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--c-line);
+  border-radius: 9999px;
+  color: var(--c-text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  @include focus-ring;
+
+  &:hover {
+    color: var(--c-text);
+    border-color: rgba(183, 189, 199, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64748b;
+  transition: all 0.25s ease;
+
+  &[data-active="true"] {
+    background: var(--c-cyan, #22d3ee);
+    box-shadow: 0 0 8px var(--c-cyan, #22d3ee);
+  }
+}
+
+.label {
+  strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+}

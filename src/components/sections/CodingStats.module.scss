@@ -1,0 +1,348 @@
+@use "abstracts" as *;
+
+.codingSection {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-line);
+  position: relative;
+  z-index: 5;
+}
+
+.headerBlock {
+  max-width: 820px;
+  margin-bottom: 3.5rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: fluid(32, 52);
+  line-height: 1.05;
+  color: var(--c-text);
+  margin-bottom: 0.75rem;
+}
+
+.sectionLead {
+  font-size: fluid(16, 20);
+  line-height: 1.6;
+  color: var(--c-text-dim);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+
+  @include mq(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statPanel {
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  padding: fluid(24, 36);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.panelTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.platformBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-cyan);
+}
+
+.snapshotDate {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+}
+
+.profileLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-cyan);
+  transition: opacity 0.2s ease;
+  @include focus-ring;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.mainMetricRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.numberBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.bigNum {
+  font-family: var(--font-display);
+  font-size: fluid(56, 80);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--c-text);
+  letter-spacing: -0.04em;
+}
+
+.numUnit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  font-weight: 600;
+}
+
+.langPill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-cyan);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+}
+
+.metaDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding: 1.25rem;
+  background: var(--c-surface-2);
+  border-radius: 6px;
+  border: 1px solid var(--c-line);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.detailKey {
+  color: var(--c-text-dim);
+}
+
+.detailVal {
+  font-family: var(--font-mono);
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.privacyTag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-cyan);
+}
+
+.heatmapBlock {
+  margin-top: auto;
+}
+
+.heatmapHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.heatmapTitle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+}
+
+.illustrativeTag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--c-text-muted);
+}
+
+.gridCells {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 4px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: #181b22;
+
+  &[data-intensity="1"] {
+    background: rgba(34, 211, 238, 0.15);
+  }
+  &[data-intensity="2"] {
+    background: rgba(34, 211, 238, 0.35);
+  }
+  &[data-intensity="3"] {
+    background: rgba(34, 211, 238, 0.65);
+  }
+  &[data-intensity="4"] {
+    background: var(--c-cyan);
+    box-shadow: 0 0 6px rgba(34, 211, 238, 0.4);
+  }
+}
+
+.badgeShowcase {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+}
+
+.badgeThumbnail {
+  position: relative;
+  width: 140px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: var(--c-cyan);
+
+    .thumbInspectPill {
+      opacity: 1;
+    }
+  }
+}
+
+.badgeImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbInspectPill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 6, 8, 0.85);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--c-cyan);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.badgeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.badgeHeaderTag {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--c-cyan);
+}
+
+.badgeIcon {
+  color: var(--c-cyan);
+}
+
+.badgeTitle {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.badgeSubtitle {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--c-text-dim);
+}
+
+.countersBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.countersHeading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+}
+
+.counterWarning {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+  font-style: italic;
+}
+
+.chipsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.langCountCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.countNumber {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--c-cyan);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.countLang {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--c-text-dim);
+}

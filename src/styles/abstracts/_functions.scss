@@ -1,0 +1,29 @@
+@use "sass:math";
+@use "sass:map";
+@use "./tokens" as t;
+
+// Convert px to rem
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// Fluid sizing formula with clamp
+@function fluid($min-px, $max-px, $min-vw: 360, $max-vw: 1440) {
+  $min-rem: math.div($min-px, 16);
+  $max-rem: math.div($max-px, 16);
+  $slope: math.div($max-px - $min-px, $max-vw - $min-vw);
+  $y-intercept: -1 * $min-vw * $slope + $min-px;
+  $y-intercept-rem: math.div($y-intercept, 16);
+  $slope-vw: $slope * 100;
+
+  @return clamp(
+    #{$min-rem}rem,
+    #{$y-intercept-rem}rem + #{$slope-vw}vw,
+    #{$max-rem}rem
+  );
+}
+
+// Retrieve z-index from map safely
+@function z($key) {
+  @return map.get(t.$z-indices, $key);
+}

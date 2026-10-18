@@ -1,0 +1,79 @@
+# Viven Gorantla — Comprehensive AI Engineering & Systems Knowledge Base
+
+> Official Canonical Resource: https://vivengorantla.dev
+> Author: Viven Gorantla
+> Role: B.Tech Student (2025–2029) at Geethanjali College of Engineering and Technology (GCET), Hyderabad
+> Specializations: Agentic AI Systems, Developer Tooling, Deterministic Digital Twins, Cloud & Security Engineering
+
+---
+
+## 1. Professional Profile & Background
+Viven Gorantla is an undergraduate student engineer located in Hyderabad, India. Rather than superficial AI wrappers, his work focuses on the engineering infrastructure required to make LLMs dependable in production: deterministic verification pipelines, AST static grounding, role-based approval gating, and microservice authentication.
+
+---
+
+## 2. Deep Dive Architectural Case Studies
+
+### 2.1 PatchLine (AI-Assisted Code Security & Triage)
+- **Status**: Documented Architecture & Public Prototype
+- **Repository**: https://github.com/VivenG-2007/patchline.ai
+- **Core Problem**: Traditional static analysis tools (SAST) generate lists of vulnerability flags without synthesizing verified patch proposals. Developers must manually triage warnings, verify library compatibility, write patches, and ensure regressions do not occur.
+- **Engineering Architecture**:
+  1. **Source Code Ingestion**: Tree-sitter AST parsing extracts semantic scope (functions, classes, imports) from pull request diffs.
+  2. **Static Grounding**: Semgrep rules scan code for deterministic patterns (OWASP Top 10, CWE). Linters provide ground truth—LLMs are not asked to hallucinate vulnerabilities from scratch.
+  3. **Context Assembly**: Elasticsearch & Redis assemble enclosing code, import dependencies, and framework constraints into a grounded context window.
+  4. **Model Routing**: Featherless AI routes prompts to optimized models; fallback pathways exist for Azure OpenAI / OpenAI.
+  5. **Automated Verification Step**: Generated candidate patches are checked against syntax trees and test suites before any pull request is opened.
+  6. **Human-in-the-Loop Approval**: All candidate changes require human maintainer sign-off before merging.
+- **Microservice Layout**:
+  - Auth Service: Node.js, Express, MongoDB, Redis, RS256 JWT key-pair signing.
+  - Core API Gateway: Node.js, Supabase, Redis rate-limiting.
+  - AI Service: Python, FastAPI, Azure Blob, Elasticsearch.
+  - Deployment: Docker Compose, Render blueprints, Vercel frontend.
+
+### 2.2 Crisis Commander (Autonomous Crisis Digital Twin)
+- **Status**: In Active Development (139 Automated Tests Passing)
+- **Nature**: Advisory decision support prototype built for a simulated Hyderabad monsoon flood cascade scenario. Not a certified emergency dispatch system.
+- **Core Architecture**:
+  1. **Deterministic Simulation Engine**: Fixed-point graph engine models physical cascades (e.g., rainfall -> reservoir overflow -> bridge submergence -> power station failure -> hospital ambulance diversion).
+  2. **Risk & Blast-Radius Calculation**: Dijkstra-weighted pathfinding computes secondary hazard zones and evacuee route safety scores.
+  3. **Structured AI Proposal Generation**: CommanderAgent generates structured JSON proposals conforming to strict Zod schemas (`StructuredAiAction`).
+  4. **Validation Layer**: ActionValidator checks proposals against hard physical constraints and resource budgets.
+  5. **RBAC Gating**: Critical operations (e.g., `MASS_EVACUATION`) return HTTP 403 unless approved by a verified COMMANDER role key.
+  6. **Audit & Event Stream**: Server-Sent Events (SSE) broadcast verified state mutations; all actions are appended to an immutable audit ledger.
+
+### 2.3 BLACKBOX AI 1.0 (Winning Reverse-Engineering System)
+- **Status**: 1st Place Winner (GCET IEEE Student Branch / IEEE Computer Society, 6–7 Oct 2026, Team localhost:420).
+- **Core Methodology**: Probing an unknown, hidden scoring system with a finite query budget.
+  - Phase 1: Range discovery, baseline establishment, One-Factor-At-A-Time (OFAT) parameter isolation.
+  - Phase 2: Experiment tracking via MongoDB Atlas as the single source of truth.
+  - Phase 3: Statistical feature importance analysis, surrogate model formulation, and active learning budget allocation.
+
+### 2.4 Reusable Authentication Microservice
+- **Status**: Production-ready microservice reused across hackathons.
+- **Security Features**: RS256 asymmetric JWT signing, refresh-token rotation, HttpOnly SameSite cookies, Redis token blacklisting, Redis IP/token rate limiting, multi-device session invalidation.
+- **Multi-Tenancy**: Setting a single `PROJECT_NAME` environment variable isolates MongoDB database collections and Redis key namespaces automatically with zero codebase modifications.
+
+### 2.5 DBForge AI
+- **Focus**: Translating visual ER schemas and natural language descriptions into production PostgreSQL schemas deployed to Supabase with Upstash Redis rate limiting.
+
+---
+
+## 3. Verified Proofs, Certifications & Milestones
+
+1. **BLACKBOX AI 1.0**: 1st Place Certificate of Achievement (IEEE Computer Society).
+2. **LaunchpadX-2026**: 9th Position Trophy & Certificate (SNIST Hyderabad; "9th of 240 teams" self-reported on LinkedIn).
+3. **DECODEX 2.0**: Certificate of Merit (Two-day AI agent workshop). Student roll number masked for privacy.
+4. **AWS SimuLearn: Cloud Practitioner**: Training Completion Certificate (4 Oct 2026).
+5. **AWS Cloud Quest: Cloud Practitioner**: Training Completion Certificate (24 May 2026).
+6. **GCET Hive Platform**: 273 problems solved in C with 488 submissions (Nov 2025–Oct 2026 snapshot).
+7. **LeetCode**: 50 Days Badge 2026. Profile: https://leetcode.com/u/m5oBHEqoAY/
+
+---
+
+## 4. Operational Principles
+1. **Understand the problem**: Never reach for a neural network where a regex or graph algorithm suffices.
+2. **Design the workflow**: System architecture and state boundaries dictate reliability.
+3. **Build the system**: Split by responsibility; isolate secrets; enforce schema boundaries with Zod/Pydantic.
+4. **Verify the result**: The AI proposes, software verifies, a human approves.
+5. **Learn and iterate**: Measure real test cases, inspect failures, and adapt.

@@ -1,0 +1,173 @@
+{
+  "portraits/viven-dreamer": {
+    "key": "portraits/viven-dreamer",
+    "src": "/images/portraits/viven-dreamer.jpg",
+    "webp": "/images/portraits/viven-dreamer.webp",
+    "width": 328,
+    "height": 410,
+    "aspectRatio": "0.8000",
+    "blurDataURL": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQBACdASoQABQAPzmEuVOvKKWisAgB4CcJaACxDDZDA2gK02W7XB2C3hfAAP7i3k5QVErHGjAqtUUsLnt3v/sHqsYRDr4D2VjHo2IUBYNi43JBchTTHGkH+VMD2zBnYZCwAA=="
+  },
+  "portraits/viven-explorer": {
+    "key": "portraits/viven-explorer",
+    "src": "/images/portraits/viven-explorer.jpg",
+    "webp": "/images/portraits/viven-explorer.webp",
+    "width": 334,
+    "height": 418,
+    "aspectRatio": "0.7990",
+    "blurDataURL": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAwBACdASoQABQAPzmEuVOvKKWisAgB4CcJYgCdACPOqnqPxZZKD/uA/6wA/q8e6cCaxYu7XDqBU9lIZ+7QOrK1jLn8zb3meDH5+WoSRI7bgdAcPWhlXFyi6GKFELdbBavEZFwwNcm6fq6UEPgQDLoOAkAAAA=="
+  },
+  "portraits/viven-focused": {
+    "key": "portraits/viven-focused",
+    "src": "/images/portraits/viven-focused.jpg",
+    "webp": "/images/portraits/viven-focused.webp",
+    "width": 331,
+    "height": 414,
+    "aspectRatio": "0.7995",
+    "blurDataURL": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAwCdASoQABQAPzmEuVOvKKWisAgB4CcJZAAAW4VLhzUCDFzGTCgA/tjb871p9NT/tl4Kdv+K6CW4vzNxmCxpig+gQV8Eulneu42z2tFIx1v7JAA="
+  },
+  "portraits/viven-hackathon-candid": {
+    "key": "portraits/viven-hackathon-candid",
+    "src": "/images/portraits/viven-hackathon-candid.jpg",
+    "webp": "/images/portraits/viven-hackathon-candid.webp",
+    "width": 334,
+    "height": 418,
+    "aspectRatio": "0.7990",
+    "blurDataURL": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADwAwCdASoQABQAPzmGuVOvKSWisAgB4CcJaAC7ACHmxsks+GRPFfbAAP65bxuMWCC2YwbgChHIG0KFtH+dv8v+Cyza7O1zEEBmZRYuKUEG7ytaZiytwjQY1jQ+KSWiMhnlI1AA"
+  },
+  "portraits/viven-launchpad-trophy": {
+    "key": "portraits/viven-launchpad-trophy",
+    "src": "/images/portraits/viven-launchpad-trophy.jpg",
+    "webp": "/images/portraits/viven-launchpad-trophy.webp",
+    "width": 331,
+    "height": 414,
+    "aspectRatio": "0.7995",
+    "blurDataURL": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBACdASoQABQAPzmGuVOvKSWisAgB4CcJbACsMoR4GChiZV6CKIIadTAA/tjsCgG8tquGmaaVYIlphb8DRzj4uh1T25ldDDPi4HTQVmWRnmHosv8Zj33CsPn2DdqptodIRmwa9+Ynjbt4TRNy3iCV6snoW84dU5pQAA=="
+  },
+  "portraits/viven-professional": {
+    "key": "portraits/viven-professional",
+    "src": "/images/portraits/viven-professional.jpg",
+    "webp": "/images/portraits/viven-professional.webp",
+    "width": 334,
+    "height": 418,
+    "aspectRatio": "0.7990",
+    "blurDataURL": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoQABQAPzmEuVOvKKWisAgB4CcJQBllhC5MGNyju0ntNgIAAP1M+Oib26CIQ7Z5Tqe0yAyx6cIJC7cpsQiX/mhjQ3J7BTGs1wskkM564usCOPMGmHp+N2wwaL0e54MN6SPxrkMugAA="
+  },
+  "portraits/viven-real-me": {
+    "key": "portraits/viven-real-me",
+    "src": "/images/portraits/viven-real-me.jpg",
+    "webp": "/images/portraits/viven-real-me.webp",
+    "width": 328,
+    "height": 410,
+    "aspectRatio": "0.8000",
+    "blurDataURL": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoQABQAPzmEuVOvKKWisAgB4CcJYwDA3BxLXHzg5GjjpxYAAPpxuwn996TC4eAUOas65r5x+gqMkt23RWsjxDCQQdefCWD/O4+QeYq+uiWgQ4nVkl9QRmWeC5VDsgJoURQNNAAA"
+  },
+  "portraits/viven-signature": {
+    "key": "portraits/viven-signature",
+    "src": "/images/portraits/viven-signature.jpg",
+    "webp": "/images/portraits/viven-signature.webp",
+    "width": 328,
+    "height": 410,
+    "aspectRatio": "0.8000",
+    "blurDataURL": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACQAwCdASoQABQAPzmEuVOvKKWisAgB4CcJZwDM0CHfUaSk5AUYAP7o2nEPXJvSuG68X6N6SiMIWxC5gAA="
+  },
+  "portraits/viven-standing": {
+    "key": "portraits/viven-standing",
+    "src": "/images/portraits/viven-standing.jpg",
+    "webp": "/images/portraits/viven-standing.webp",
+    "width": 334,
+    "height": 418,
+    "aspectRatio": "0.7990",
+    "blurDataURL": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoQABQAPzmEuVOvKKWisAgB4CcJQBllhC5MGNyju0ntNgIAAP1M+Oib26CIQ7Z5Tqe0yAyx6cIJC7cpsQiX/mhjQ3J7BTGs1wskkM564usCOPMGmHp+N2wwaL0e54MN6SPxrkMugAA="
+  },
+  "portraits/viven-student": {
+    "key": "portraits/viven-student",
+    "src": "/images/portraits/viven-student.jpg",
+    "webp": "/images/portraits/viven-student.webp",
+    "width": 331,
+    "height": 414,
+    "aspectRatio": "0.7995",
+    "blurDataURL": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQAwCdASoQABQAPzmEuVOvKKWisAgB4CcJYgC06Bbp+oN3O9KMmoAA+Nj9jamV2+mNEp8er01dfjrqICT9kdNlJhsKmfFivk3Bvcoo845Ykh1M/EQ6zvzzlJyCSqbtJcP1s1NmHCDilzn3zF0Uz2feWgPyR95TQAA="
+  },
+  "awards/blackbox-certificate": {
+    "key": "awards/blackbox-certificate",
+    "src": "/images/awards/blackbox-certificate.jpg",
+    "webp": "/images/awards/blackbox-certificate.webp",
+    "width": 1559,
+    "height": 1160,
+    "aspectRatio": "1.3440",
+    "blurDataURL": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoQAAwABUB8JYwCdAEPdZOnN6CAAP2/xzMtzZ57QoWl3OKzOxoDuPLwhcvjVlndjMRv23scvMesdJT95ffnLg4jQAA="
+  },
+  "awards/decodex-certificate": {
+    "key": "awards/decodex-certificate",
+    "src": "/images/awards/decodex-certificate.jpg",
+    "webp": "/images/awards/decodex-certificate.webp",
+    "width": 1600,
+    "height": 1146,
+    "aspectRatio": "1.3962",
+    "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoQAAsABUB8JZwAAfWmtWAAAPuDvbBe0tAw3T2ysecAfGUEl+PlddHAAAA="
+  },
+  "awards/launchpadx-certificate": {
+    "key": "awards/launchpadx-certificate",
+    "src": "/images/awards/launchpadx-certificate.jpg",
+    "webp": "/images/awards/launchpadx-certificate.webp",
+    "width": 1200,
+    "height": 1599,
+    "aspectRatio": "0.7505",
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAABwAwCdASoQABUAPzmMvlUvKaajMAgB4CcJZACdAB04whnTEUQAqVLgND+Oo2vawU8h5uHfik3b6yuGqyu6ANtD3mkHbIDeIIEUgacrslAAAA=="
+  },
+  "awards/launchpadx-trophy": {
+    "key": "awards/launchpadx-trophy",
+    "src": "/images/awards/launchpadx-trophy.jpg",
+    "webp": "/images/awards/launchpadx-trophy.webp",
+    "width": 1200,
+    "height": 1599,
+    "aspectRatio": "0.7505",
+    "blurDataURL": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoQABUAPzmEuVOvKKWisAgB4CcJaACdABnUAkmv266baeEAAPXVZHlzXiX5U5O3sAeUI+YFi/pMmtceV+wBNgAMY6eUhyGRbFrPGaSrUWsKQse8mhOy/bPIGU19r2iaQBVySRkbCmAAAA=="
+  },
+  "training/aws-cloudquest-certificate": {
+    "key": "training/aws-cloudquest-certificate",
+    "src": "/images/training/aws-cloudquest-certificate.jpg",
+    "webp": "/images/training/aws-cloudquest-certificate.webp",
+    "width": 1980,
+    "height": 1530,
+    "aspectRatio": "1.2941",
+    "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABQAQCdASoQAAwABUB8JZwABAAAAP7wThzLNzA5venqRZ35KT7w76wDgAA="
+  },
+  "training/aws-simulearn-badge": {
+    "key": "training/aws-simulearn-badge",
+    "src": "/images/training/aws-simulearn-badge.png",
+    "webp": "/images/training/aws-simulearn-badge.webp",
+    "width": 324,
+    "height": 324,
+    "aspectRatio": "1.0000",
+    "blurDataURL": "data:image/webp;base64,UklGRtoAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSGsAAAABcBvbtqpcnKbciV0b+ikVuWtkDWjsvHsOnpFHxASIeFO13sHcNnUr5BKxVxcEP4Kzsj1M6l1BwtyhDCZowK+4MRbnz8roX8BvCZofcGPMD+rdKKHGKOiT9Fj5FfO8TcQdsJrr63FZt8IeEQBWUDggSAAAALABAJ0BKhAAEAAFQHwlAE6AGSD/kAAA/n5BbQPZRF2FWOBvNXipxjAs5lfjTHrJj2C3YIiUMbTyNTUyqYspqHM0MCCuoUAAAA=="
+  },
+  "training/aws-simulearn-certificate": {
+    "key": "training/aws-simulearn-certificate",
+    "src": "/images/training/aws-simulearn-certificate.jpg",
+    "webp": "/images/training/aws-simulearn-certificate.webp",
+    "width": 1980,
+    "height": 1530,
+    "aspectRatio": "1.2941",
+    "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAABQAQCdASoQAAwABUB8JZwABAAAAP7wThzijfTZvajUm5Pp5ysoUAAA"
+  },
+  "coding/leetcode-50-days": {
+    "key": "coding/leetcode-50-days",
+    "src": "/images/coding/leetcode-50-days.jpg",
+    "webp": "/images/coding/leetcode-50-days.webp",
+    "width": 1535,
+    "height": 778,
+    "aspectRatio": "1.9730",
+    "blurDataURL": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACwAQCdASoQAAgABUB8JaQAAp1SAojgAP7Z9fMgbeTM9WfesIAAAA=="
+  },
+  "team/decodex-group": {
+    "key": "team/decodex-group",
+    "src": "/images/team/decodex-group.jpg",
+    "webp": "/images/team/decodex-group.webp",
+    "width": 960,
+    "height": 1280,
+    "aspectRatio": "0.7500",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABQBACdASoQABUAPzmEuVOvKKWisAgB4CcJZgCdMoBOACaTL5M9qEpVDQFEAPjIiuqXJs25lajDTHVzKU0bIE3WUTLnGEQjPcKUSYlY9it3ElEkqmWBxvEjgOUfeUpYpu9QX/y6sHq/re7EK5yGDpKrsKMGPf49UjzT0MpYAAA="
+  }
+}

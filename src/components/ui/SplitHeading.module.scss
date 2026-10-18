@@ -1,0 +1,18 @@
+.heading {
+  display: block;
+}
+
+.wordWrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.wordInner {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.space {
+  display: inline-block;
+}

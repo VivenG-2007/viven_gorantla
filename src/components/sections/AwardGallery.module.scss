@@ -1,0 +1,246 @@
+@use "abstracts" as *;
+
+.gallerySection {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-line);
+  position: relative;
+  z-index: 5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.headerBlock {
+  max-width: 820px;
+  margin-bottom: 3rem;
+}
+
+.paperLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--c-violet);
+  margin-bottom: 1rem;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: fluid(32, 52);
+  line-height: 1.05;
+  color: var(--c-text);
+  margin-bottom: 0.75rem;
+}
+
+.sectionLead {
+  font-size: fluid(16, 19);
+  line-height: 1.6;
+  color: var(--c-text-dim);
+}
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.filterBtn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.15rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--c-text-dim);
+  transition: all 0.2s ease;
+  @include focus-ring;
+
+  &:hover {
+    color: var(--c-text);
+    border-color: rgba(11, 12, 16, 0.3);
+  }
+
+  &.filterActive {
+    background: var(--c-text);
+    color: var(--c-bg);
+    border-color: var(--c-text);
+    font-weight: 600;
+  }
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.awardCard {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(11, 12, 16, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(11, 12, 16, 0.1);
+    border-color: rgba(11, 12, 16, 0.35);
+
+    .cardImg {
+      transform: scale(1.03);
+    }
+
+    .inspectPill {
+      opacity: 1;
+    }
+  }
+
+  &.heroCard {
+    border-width: 1.5px;
+    border-color: rgba(109, 40, 217, 0.3);
+  }
+}
+
+.cardImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #0d0f14;
+  overflow: hidden;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imgTagOverlay {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  pointer-events: none;
+}
+
+.inspectPill {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(11, 12, 16, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #f4f2ec;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.typographicTile {
+  aspect-ratio: 4 / 3;
+  background: var(--c-surface-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.typoIcon {
+  color: var(--c-violet);
+}
+
+.typoCategory {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardMetaTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.dateLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+}
+
+.verifyPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--c-violet);
+  background: rgba(109, 40, 217, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.awardTitle {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.orgLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--c-text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.captionText {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--c-text-dim);
+  margin-top: auto;
+}

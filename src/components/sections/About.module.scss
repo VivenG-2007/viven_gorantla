@@ -1,0 +1,270 @@
+@use "abstracts" as *;
+
+.aboutSection {
+  background: var(--c-bg);
+  position: relative;
+  z-index: 5;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.headerBlock {
+  margin-bottom: fluid(36, 56);
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.labelSub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+}
+
+.editorialHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--c-text);
+  margin-bottom: 1.5rem;
+
+  em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--c-cyan);
+  }
+}
+
+.identityNotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--c-text-dim);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(183, 189, 199, 0.1);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      content: "·";
+      margin-left: 1.25rem;
+      color: var(--c-cyan);
+    }
+  }
+}
+
+.explorerSection {
+  margin-bottom: fluid(48, 72);
+}
+
+.splitGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  margin-bottom: fluid(48, 80);
+
+  @include mq(lg) {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 4.5rem;
+    align-items: flex-start;
+  }
+}
+
+.thesisCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.shortBio {
+  font-size: fluid(16, 18);
+  line-height: 1.6;
+  color: var(--c-text-dim);
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.thesisParagraph {
+  font-family: var(--font-display);
+  font-size: fluid(22, 34);
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.thesisWord {
+  display: inline-block;
+  opacity: 0.25;
+  color: #7e8695;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.portraitCol {
+  display: flex;
+  justify-content: center;
+
+  @include mq(lg) {
+    justify-content: flex-end;
+  }
+}
+
+.portraitFrame {
+  width: 100%;
+  max-width: 420px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: var(--c-cyan);
+
+    .duotoneOverlay {
+      opacity: 0;
+    }
+
+    .portraitImg {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.portraitInner {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0d0f14;
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+// Duotone overlay with CSS fallback
+.duotoneOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.35) 0%,
+    rgba(34, 211, 238, 0.2) 100%
+  );
+  mix-blend-mode: color;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.frameLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  background: var(--c-surface-2);
+  border-top: 1px solid var(--c-line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--c-text);
+}
+
+.frameSub {
+  color: var(--c-cyan);
+}
+
+.factBlocksGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @include mq(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.factCard {
+  padding: 1.75rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: rgba(34, 211, 238, 0.3);
+    background: var(--c-surface-2);
+    transform: translateY(-2px);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cardIcon {
+  color: var(--c-cyan);
+}
+
+.cardTitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--c-cyan);
+  text-transform: uppercase;
+}
+
+.factMain {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 0.35rem;
+}
+
+.factSub {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--c-text-dim);
+  flex: 1;
+}
+
+.cgpaBadge {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-cyan);
+}
+
+.cgpaSource {
+  font-weight: 400;
+  color: var(--c-text-muted);
+}
