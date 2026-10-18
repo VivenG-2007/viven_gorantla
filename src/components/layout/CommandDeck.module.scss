@@ -19,7 +19,7 @@
   background: var(--c-surface);
   border: 1px solid var(--c-line);
   border-radius: 12px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(249, 115, 22, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -95,9 +95,9 @@
   @include focus-ring;
 
   &.selected {
-    background: rgba(34, 211, 238, 0.08);
+    background: rgba(245, 158, 11, 0.08);
     color: var(--c-text);
-    border: 1px solid rgba(34, 211, 238, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.2);
 
     .enterIcon {
       opacity: 1;

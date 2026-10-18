@@ -37,7 +37,7 @@ export function ParticleField({ count = 2500 }: ParticleFieldProps) {
       uTime: { value: 0 },
       uSize: { value: 18.0 },
       uViolet: { value: new THREE.Color("#8B5CF6") },
-      uCyan: { value: new THREE.Color("#22D3EE") },
+      uCyan: { value: new THREE.Color("#F59E0B") },
     }),
     []
   );

@@ -102,14 +102,14 @@
 }
 
 .ctaPrimary {
-  background: rgba(34, 211, 238, 0.08);
-  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
   color: var(--c-cyan);
 
   &:hover {
-    background: rgba(34, 211, 238, 0.16);
+    background: rgba(245, 158, 11, 0.16);
     border-color: var(--c-cyan);
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
   }
 }
 

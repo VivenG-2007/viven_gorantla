@@ -32,7 +32,7 @@ export default async function Image() {
             right: 0,
             width: "600px",
             height: "600px",
-            background: "radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.3) 0%, rgba(34, 211, 238, 0.15) 40%, transparent 70%)",
+            background: "radial-gradient(circle at 100% 0%, rgba(249, 115, 22, 0.3) 0%, rgba(245, 158, 11, 0.15) 40%, transparent 70%)",
           }}
         />
 
@@ -41,11 +41,11 @@ export default async function Image() {
             style={{
               padding: "10px 18px",
               background: "#181B22",
-              border: "1px solid rgba(34, 211, 238, 0.4)",
+              border: "1px solid rgba(245, 158, 11, 0.4)",
               borderRadius: "8px",
               fontSize: "22px",
               fontWeight: 700,
-              color: "#22D3EE",
+              color: "#F59E0B",
             }}
           >
             VG
@@ -96,7 +96,7 @@ export default async function Image() {
             borderTop: "1px solid rgba(183, 189, 199, 0.2)",
             paddingTop: "28px",
             fontSize: "20px",
-            color: "#22D3EE",
+            color: "#F59E0B",
           }}
         >
           <span>GCET HYDERABAD · B.TECH 2025–2029</span>

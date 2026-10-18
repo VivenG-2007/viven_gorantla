@@ -40,7 +40,7 @@
 // Accessible visible focus ring
 @mixin focus-ring {
   &:focus-visible {
-    outline: 2px solid var(--c-cyan, #22d3ee);
+    outline: 2px solid var(--c-cyan, #f59e0b);
     outline-offset: 3px;
   }
   &:focus:not(:focus-visible) {

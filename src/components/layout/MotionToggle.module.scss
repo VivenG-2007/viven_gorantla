@@ -32,8 +32,8 @@
   transition: all 0.25s ease;
 
   &[data-active="true"] {
-    background: var(--c-cyan, #22d3ee);
-    box-shadow: 0 0 8px var(--c-cyan, #22d3ee);
+    background: var(--c-cyan, #f59e0b);
+    box-shadow: 0 0 8px var(--c-cyan, #f59e0b);
   }
 }
 

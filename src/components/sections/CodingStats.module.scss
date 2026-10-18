@@ -120,8 +120,8 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--c-cyan);
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid rgba(34, 211, 238, 0.25);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   padding: 0.35rem 0.65rem;
   border-radius: 4px;
 }
@@ -196,17 +196,17 @@
   background: #181b22;
 
   &[data-intensity="1"] {
-    background: rgba(34, 211, 238, 0.15);
+    background: rgba(245, 158, 11, 0.15);
   }
   &[data-intensity="2"] {
-    background: rgba(34, 211, 238, 0.35);
+    background: rgba(245, 158, 11, 0.35);
   }
   &[data-intensity="3"] {
-    background: rgba(34, 211, 238, 0.65);
+    background: rgba(245, 158, 11, 0.65);
   }
   &[data-intensity="4"] {
     background: var(--c-cyan);
-    box-shadow: 0 0 6px rgba(34, 211, 238, 0.4);
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
   }
 }
 

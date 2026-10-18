@@ -28,7 +28,7 @@ export function SignalDisc() {
       uTime: { value: 0 },
       uPointer: { value: new THREE.Vector2(0, 0) },
       uViolet: { value: new THREE.Color("#8B5CF6") },
-      uCyan: { value: new THREE.Color("#22D3EE") },
+      uCyan: { value: new THREE.Color("#F59E0B") },
     }),
     []
   );
@@ -160,7 +160,7 @@ export function SignalDisc() {
             />
           </bufferGeometry>
           <lineBasicMaterial
-            color="#22d3ee"
+            color="#f59e0b"
             transparent
             opacity={0.35}
             linewidth={1}
@@ -172,8 +172,8 @@ export function SignalDisc() {
           <mesh key={i} position={pos}>
             <sphereGeometry args={[0.055, 16, 16]} />
             <meshStandardMaterial
-              color={i % 2 === 0 ? "#22d3ee" : "#8b5cf6"}
-              emissive={i % 2 === 0 ? "#22d3ee" : "#8b5cf6"}
+              color={i % 2 === 0 ? "#f59e0b" : "#8b5cf6"}
+              emissive={i % 2 === 0 ? "#f59e0b" : "#8b5cf6"}
               emissiveIntensity={1.8}
             />
           </mesh>

@@ -65,7 +65,7 @@
   &.toggleActive {
     background: var(--c-surface);
     color: var(--c-cyan);
-    border: 1px solid rgba(34, 211, 238, 0.3);
+    border: 1px solid rgba(245, 158, 11, 0.3);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 }
@@ -107,8 +107,8 @@
   }
 
   &.nodeActive {
-    background: rgba(34, 211, 238, 0.06);
-    border-color: rgba(34, 211, 238, 0.35);
+    background: rgba(245, 158, 11, 0.06);
+    border-color: rgba(245, 158, 11, 0.35);
 
     .nodeDot {
       background: var(--c-cyan);
@@ -259,7 +259,7 @@
 
 .quoteBlock {
   padding: 1.25rem;
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(249, 115, 22, 0.08);
   border-left: 3px solid var(--c-violet);
   border-radius: 4px;
   font-size: 0.875rem;

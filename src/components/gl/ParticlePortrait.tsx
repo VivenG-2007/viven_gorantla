@@ -81,7 +81,7 @@ function buildProceduralFacePoints(sampleW: number, sampleH: number, haloCount: 
 
 export function ParticlePortrait({
   quality,
-  imageSrc = "/images/portraits/viven-signature.jpg",
+  imageSrc = "/images/portraits/viven-hero-clean.png",
 }: ParticlePortraitProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const shaderMatRef = useRef<THREE.ShaderMaterial>(null);
@@ -89,7 +89,6 @@ export function ParticlePortrait({
   const backdropMeshRef = useRef<THREE.Mesh>(null);
 
   const { viewport } = useThree();
-  const scrollProgress = useMotionStore((s) => s.scroll.progress);
   const motionOn = useMotionStore((s) => s.motionOn);
 
   const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
@@ -102,12 +101,12 @@ export function ParticlePortrait({
   const gridResolution = useMemo(() => {
     switch (quality.preset) {
       case "high":
-        return { width: 110, height: 140, haloCount: 180 };
+        return { width: 115, height: 145, haloCount: 220 };
       case "medium":
-        return { width: 90, height: 115, haloCount: 100 };
+        return { width: 95, height: 120, haloCount: 120 };
       case "low":
       default:
-        return { width: 70, height: 90, haloCount: 50 };
+        return { width: 75, height: 95, haloCount: 60 };
     }
   }, [quality.preset]);
 
@@ -146,8 +145,8 @@ export function ParticlePortrait({
 
         const cx = sampleW / 2;
         const cy = sampleH * 0.42;
-        const worldW = 2.75;
-        const worldH = 3.45;
+        const worldW = 2.85;
+        const worldH = 3.55;
 
         for (let y = 0; y < sampleH; y++) {
           for (let x = 0; x < sampleW; x++) {
@@ -155,53 +154,58 @@ export function ParticlePortrait({
             const r = data[idx] / 255;
             const g = data[idx + 1] / 255;
             const b = data[idx + 2] / 255;
+            const a = data[idx + 3] / 255;
+
+            // If transparent cutout background, skip empty background pixels
+            if (a < 0.2) continue;
+
             const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+            if (lum < 0.04 && a < 0.85) continue;
 
             const nx = (x - cx) / (sampleW * 0.5);
             const ny = (y - cy) / (sampleH * 0.5);
             const distHead = Math.sqrt(nx * nx + ny * ny);
 
-            if (lum < 0.06 && distHead > 0.75) continue;
-            if (y > sampleH * 0.75 && lum < 0.12 && (x % 2 === 0 || y % 2 === 0)) continue;
-
             const wx = (x / sampleW - 0.5) * worldW;
-            const wy = -(y / sampleH - 0.5) * worldH;
+            const wy = -(y / sampleH - 0.5) * worldH + 0.12;
 
             const ellipsoid = Math.sqrt(
-              Math.max(0, 1.0 - Math.min(1.0, nx * nx * 1.35 + ny * ny * 0.95))
+              Math.max(0, 1.0 - Math.min(1.0, nx * nx * 1.3 + ny * ny * 0.95))
             );
 
             const isCenterFace = distHead < 0.65;
-            const relief = isCenterFace ? (lum - 0.45) * 0.35 : 0.0;
-            const wz = ellipsoid * 0.48 + relief;
+            const relief = isCenterFace ? (lum - 0.45) * 0.32 : 0.0;
+            const wz = ellipsoid * 0.46 + relief;
 
             origins.push(wx, wy, wz);
             positions.push(wx, wy, wz);
 
-            const isRim = distHead > 0.62 || nx > 0.38 || nx < -0.38 || y > sampleH * 0.65;
+            // Rim particles: hair outline and shoulders receive full golden-orange warmth
+            const isRim = distHead > 0.58 || Math.abs(nx) > 0.38 || y > sampleH * 0.62;
             const goldFactor = isRim
-              ? Math.min(1.0, Math.pow(Math.max(0, distHead - 0.5) / 0.45, 1.3))
-              : 0.0;
+              ? Math.min(1.0, Math.pow(Math.max(0, distHead - 0.46) / 0.44, 1.2))
+              : 0.2; // Subtle golden warmth even on face
 
+            // Warm gold and orange palette
             const silverBase = Math.min(1.0, lum * 1.25);
-            const faceColor = new THREE.Color(silverBase, silverBase * 0.98, silverBase * 0.96);
-            const goldColor = new THREE.Color(1.0, 0.78, 0.32);
-            const mixedColor = faceColor.clone().lerp(goldColor, goldFactor * 0.85);
+            const faceColor = new THREE.Color(silverBase, silverBase * 0.95, silverBase * 0.88);
+            const goldColor = new THREE.Color(1.0, 0.76, 0.24); // Radiant Gold
+            const mixedColor = faceColor.clone().lerp(goldColor, goldFactor * 0.92);
 
             colors.push(mixedColor.r, mixedColor.g, mixedColor.b);
 
-            const shimmerSpeed = 0.5 + Math.random() * 1.5;
-            const sizeMult = 0.75 + lum * 0.6 + Math.random() * 0.3;
+            const shimmerSpeed = 0.6 + Math.random() * 1.4;
+            const sizeMult = 0.82 + lum * 0.5 + Math.random() * 0.3;
             const randomPhase = Math.random();
 
             params.push(goldFactor, shimmerSpeed, sizeMult, randomPhase);
           }
         }
 
-        // Ambient halo embers
+        // Ambient halo embers around the silhouette
         for (let i = 0; i < haloCount; i++) {
           const angle = Math.random() * Math.PI * 2;
-          const rad = 1.2 + Math.random() * 0.85;
+          const rad = 1.15 + Math.random() * 0.8;
           const hx = Math.cos(angle) * rad * (worldW * 0.52);
           const hy = Math.sin(angle) * rad * (worldH * 0.42) + 0.15;
           const hz = (Math.random() - 0.5) * 0.6;
@@ -209,9 +213,13 @@ export function ParticlePortrait({
           origins.push(hx, hy, hz);
           positions.push(hx, hy, hz);
 
-          const haloGold = new THREE.Color(1.0, 0.75 + Math.random() * 0.15, 0.25 + Math.random() * 0.2);
-          colors.push(haloGold.r, haloGold.g, haloGold.b);
-          params.push(1.0, 0.8 + Math.random() * 1.2, 0.5 + Math.random() * 0.5, Math.random());
+          const isOrange = Math.random() > 0.45;
+          const emberColor = isOrange
+            ? new THREE.Color(0.97, 0.52, 0.12)
+            : new THREE.Color(1.0, 0.82, 0.30);
+
+          colors.push(emberColor.r, emberColor.g, emberColor.b);
+          params.push(1.0, 0.8 + Math.random() * 1.2, 0.55 + Math.random() * 0.45, Math.random());
         }
 
         const geo = new THREE.BufferGeometry();
@@ -223,7 +231,7 @@ export function ParticlePortrait({
         createdGeo = geo;
         setGeometry(geo);
       } catch (err) {
-        console.warn("Portrait canvas sampling failed, using procedural point cloud fallback", err);
+        console.warn("Portrait canvas sampling failed, using procedural fallback", err);
         const fallbackGeo = buildProceduralFacePoints(sampleW, sampleH, haloCount);
         createdGeo = fallbackGeo;
         setGeometry(fallbackGeo);
@@ -231,7 +239,6 @@ export function ParticlePortrait({
     };
 
     const img = new Image();
-    // Only set crossOrigin if loading external http URL
     if (imageSrc.startsWith("http")) {
       img.crossOrigin = "anonymous";
     }
@@ -273,8 +280,13 @@ export function ParticlePortrait({
 
   // Real-time animation loop
   useFrame((state, delta) => {
-    // 1. Offscreen culling: If user scrolled past hero, pause rendering to save 100% GPU
-    if (scrollProgress > 0.82) {
+    // 1. Direct scroll tracking for the hero section
+    const currentScroll = typeof window !== "undefined" ? window.scrollY : 0;
+    const heroH = typeof window !== "undefined" ? window.innerHeight : 800;
+    const heroScrollProgress = Math.min(Math.max(currentScroll / (heroH * 0.85), 0.0), 1.0);
+
+    // Offscreen culling: If user scrolled past hero, pause rendering to save 100% GPU
+    if (heroScrollProgress >= 1.0 && currentScroll > heroH * 1.3) {
       if (groupRef.current && groupRef.current.visible) {
         groupRef.current.visible = false;
       }
@@ -287,7 +299,7 @@ export function ParticlePortrait({
 
     if (shaderMatRef.current) {
       shaderMatRef.current.uniforms.uTime.value = t;
-      shaderMatRef.current.uniforms.uScrollProgress.value = scrollProgress;
+      shaderMatRef.current.uniforms.uScrollProgress.value = heroScrollProgress;
 
       if (motionOn) {
         const worldPointerX = (state.pointer.x * viewport.width) / 2;
@@ -312,8 +324,8 @@ export function ParticlePortrait({
     }
 
     if (groupRef.current) {
-      const targetRotY = motionOn ? state.pointer.x * 0.16 : 0;
-      const targetRotX = motionOn ? -state.pointer.y * 0.12 : 0;
+      const targetRotY = motionOn ? state.pointer.x * 0.14 : 0;
+      const targetRotX = motionOn ? -state.pointer.y * 0.10 : 0;
 
       groupRef.current.rotation.y = THREE.MathUtils.damp(
         groupRef.current.rotation.y,
@@ -328,27 +340,27 @@ export function ParticlePortrait({
         delta
       );
 
-      groupRef.current.position.y = Math.sin(t * 0.75) * 0.04;
+      groupRef.current.position.y = Math.sin(t * 0.85) * 0.035;
     }
 
     if (backdropMeshRef.current) {
       const mat = backdropMeshRef.current.material as THREE.MeshBasicMaterial;
       if (mat) {
-        mat.opacity = THREE.MathUtils.clamp(0.14 * (1.0 - scrollProgress * 1.6), 0.0, 0.14);
+        mat.opacity = THREE.MathUtils.clamp(0.28 * (1.0 - heroScrollProgress * 1.5), 0.0, 0.28);
       }
     }
   });
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Partially visible portrait plane behind particles */}
+      {/* Partially visible portrait plane behind particles so face likeness is unmistakable */}
       {backdropTexture && (
-        <mesh ref={backdropMeshRef} position={[0, 0, -0.15]}>
-          <planeGeometry args={[2.75, 3.45]} />
+        <mesh ref={backdropMeshRef} position={[0, 0.12, -0.15]}>
+          <planeGeometry args={[2.85, 3.55]} />
           <meshBasicMaterial
             map={backdropTexture}
             transparent
-            opacity={0.14}
+            opacity={0.28}
             blending={THREE.AdditiveBlending}
             depthWrite={false}
           />

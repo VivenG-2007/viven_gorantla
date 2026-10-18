@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { View, PerspectiveCamera } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { HeroScene } from "./HeroScene";
 import type { QualityPreset } from "./quality";
 import styles from "@/components/sections/Hero.module.scss";
@@ -11,18 +11,32 @@ interface Hero3DViewProps {
 }
 
 export default function Hero3DView({ gpuTier }: Hero3DViewProps) {
+  const safeDpr = gpuTier === "high" ? 1.25 : 1.0;
+
   return (
-    <View className={styles.r3fView}>
-      <PerspectiveCamera makeDefault position={[0, 0.05, 4.5]} fov={44} />
-      <HeroScene
-        quality={{
-          preset: gpuTier,
-          dpr: gpuTier === "high" ? 1.2 : 1.0,
-          particles: gpuTier === "high" ? 10000 : gpuTier === "medium" ? 6500 : 3500,
-          bloom: false,
-          portalShaders: gpuTier !== "low",
+    <div className={styles.r3fCanvasContainer}>
+      <Canvas
+        camera={{ position: [0, 0.05, 4.2], fov: 44 }}
+        dpr={[1, safeDpr]}
+        gl={{
+          antialias: false,
+          alpha: true,
+          powerPreference: "high-performance",
+          depth: true,
+          stencil: false,
         }}
-      />
-    </View>
+        style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+      >
+        <HeroScene
+          quality={{
+            preset: gpuTier === "off" ? "medium" : gpuTier,
+            dpr: safeDpr,
+            particles: gpuTier === "high" ? 12000 : 7500,
+            bloom: false,
+            portalShaders: true,
+          }}
+        />
+      </Canvas>
+    </div>
   );
 }

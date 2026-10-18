@@ -182,8 +182,8 @@
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    rgba(139, 92, 246, 0.35) 0%,
-    rgba(34, 211, 238, 0.2) 100%
+    rgba(249, 115, 22, 0.35) 0%,
+    rgba(245, 158, 11, 0.2) 100%
   );
   mix-blend-mode: color;
   opacity: 1;
@@ -227,7 +227,7 @@
   transition: all 0.25s ease;
 
   &:hover {
-    border-color: rgba(34, 211, 238, 0.3);
+    border-color: rgba(245, 158, 11, 0.3);
     background: var(--c-surface-2);
     transform: translateY(-2px);
   }
@@ -273,8 +273,8 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.65rem;
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid rgba(34, 211, 238, 0.25);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 4px;
   font-family: var(--font-mono);
   font-size: 0.75rem;

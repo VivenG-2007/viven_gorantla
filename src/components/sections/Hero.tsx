@@ -47,7 +47,7 @@ export function Hero() {
             <div className={styles.staticAmbientGlow} />
             <div className={styles.fallbackImageWrap}>
               <Image
-                src="/images/portraits/viven-signature.jpg"
+                src="/images/portraits/viven-hero-clean.png"
                 alt={person.name}
                 width={500}
                 height={625}

@@ -19,65 +19,81 @@ export const particlePortraitVertex = /* glsl */ `
   void main() {
     vec3 pos = aOrigin;
 
-    // 1. Organic volumetric micro-oscillation (breathing / floating)
-    float t = uTime * 0.9;
+    // 1. Organic micro-breathing oscillation
+    float t = uTime * 1.1;
     float phase = aParams.w * 6.28318;
-    pos.x += sin(t * 1.1 + phase) * 0.018;
-    pos.y += cos(t * 0.95 + phase * 1.3) * 0.022;
-    pos.z += sin(t * 1.25 + phase * 0.7) * 0.024;
+    pos.x += sin(t * 0.95 + phase) * 0.016;
+    pos.y += cos(t * 0.85 + phase * 1.2) * 0.018;
+    pos.z += sin(t * 1.15 + phase * 0.8) * 0.020;
 
-    // 2. Mouse cursor scatter & dynamic repulsion
-    // uPointer is in world units corresponding to particle space
+    // 2. Interactive mouse cursor repulsion
     vec2 toMouse = pos.xy - uPointer;
-    float dist = length(toMouse);
+    float distMouse = length(toMouse);
 
-    if (dist < uScatterRadius && uScatterRadius > 0.001) {
-      float normDist = dist / uScatterRadius;
-      float force = pow(1.0 - normDist, 2.2);
+    if (distMouse < uScatterRadius && uScatterRadius > 0.001) {
+      float normDist = distMouse / uScatterRadius;
+      float force = pow(1.0 - normDist, 2.0);
       vec2 dir = normalize(toMouse + vec2(0.0001));
 
-      // Scatter outward in XY and forward/backward in Z for volumetric burst
       pos.xy += dir * force * uScatterStrength;
-      pos.z += force * 0.28 * sin(phase);
+      pos.z += force * 0.35 * sin(phase);
     }
 
-    // 3. Scroll reactive displacement (depth translation and vertical drift)
-    pos.y += uScrollProgress * 1.25;
-    pos.z -= uScrollProgress * 1.8;
+    // 3. Scroll reactive dynamic wave distortion
+    // Reversible: exactly proportional to uScrollProgress (0.0 at top, 1.0 scrolled down)
+    float s = clamp(uScrollProgress, 0.0, 1.0);
 
-    // 4. Traveling restrained golden pulse wave across the face / silhouette
-    // Wave moves along diagonal y + 0.35 * x
-    float wavePos = mod(uTime * uWaveSpeed, 4.5) - 2.0;
-    float waveCoord = pos.y + pos.x * 0.35;
-    float waveDist = abs(waveCoord - wavePos);
-    float waveIntensity = smoothstep(0.4, 0.0, waveDist) * 0.75;
+    if (s > 0.001) {
+      // Harmonic traveling wave ripples across XY & Z axes
+      float waveFreq = 4.2;
+      float waveTime = uTime * 2.6;
+      float wave1 = sin(pos.y * waveFreq + waveTime + s * 8.0) * cos(pos.x * 3.2 + waveTime * 0.8);
+      float wave2 = cos(pos.y * 6.5 - waveTime * 1.2 + pos.x * 4.0 + phase);
 
-    // Slight volumetric lift during wave
-    pos.z += waveIntensity * 0.06;
+      // Liquid wave lateral and vertical distortion
+      pos.x += (wave1 * 0.55 + wave2 * 0.3) * s * 1.4;
+      pos.y += (wave2 * 0.45 + wave1 * 0.35) * s * 1.2 + (s * 1.6); // Upward float
 
-    // Color mixing: silver/grayscale face + gold rim + traveling wave
-    vec3 goldColor = vec3(1.0, 0.76, 0.28);
-    vec3 amberColor = vec3(0.95, 0.62, 0.18);
-    vec3 mixedGold = mix(goldColor, amberColor, sin(phase + uTime) * 0.5 + 0.5);
+      // Volumetric wave depth displacement
+      pos.z += (wave1 - wave2) * s * 2.0;
 
-    // aParams.x is goldFactor (0 on inner face, 1 on hair edges/shoulders/halo)
-    float effectiveGold = clamp(aParams.x + waveIntensity * (1.0 - aParams.x * 0.5), 0.0, 1.0);
-    vColor = mix(aColor, mixedGold, effectiveGold);
+      // Dispersal / scatter outward as user scrolls deeper
+      float disperseDist = pow(s, 1.7) * 2.4;
+      vec2 disperseDir = normalize(pos.xy + vec2(0.0001));
+      pos.xy += disperseDir * disperseDist;
+    }
+
+    // 4. Color palette: Golden / Orange theme
+    vec3 brightGold = vec3(1.0, 0.84, 0.35); // Radiant Gold
+    vec3 warmAmber = vec3(0.96, 0.62, 0.14);  // Warm Amber (#f59e0b)
+    vec3 deepOrange = vec3(0.97, 0.45, 0.09); // Energetic Orange (#f97316)
+
+    // Shimmer wave traveling across the face
+    float pulsePos = mod(uTime * uWaveSpeed, 4.5) - 2.0;
+    float pulseDist = abs((pos.y + pos.x * 0.3) - pulsePos);
+    float waveLight = smoothstep(0.45, 0.0, pulseDist) * 0.8;
+
+    // Blend between golden amber, orange rim, and bright silver/gold facial core
+    vec3 goldMixed = mix(warmAmber, brightGold, sin(phase + uTime * 1.5) * 0.5 + 0.5);
+    goldMixed = mix(goldMixed, deepOrange, aParams.x * 0.45);
+
+    float effectiveGold = clamp(aParams.x + waveLight * (1.0 - aParams.x * 0.5), 0.0, 1.0);
+    vColor = mix(aColor, goldMixed, effectiveGold);
     vGoldFactor = effectiveGold;
 
-    // Shimmer effect (brightness / alpha pulsation)
-    float shimmer = 0.82 + 0.25 * sin(uTime * (2.0 + aParams.y * 3.0) + phase * 4.0);
-    float scrollAlpha = clamp(1.0 - uScrollProgress * 1.8, 0.0, 1.0);
+    // 5. Alpha calculation: fully visible at rest (s=0), dissolves to 0 as you scroll down
+    float shimmer = 0.85 + 0.25 * sin(uTime * (1.8 + aParams.y * 2.5) + phase * 3.0);
+    float scrollAlpha = clamp(1.0 - smoothstep(0.04, 0.82, s), 0.0, 1.0);
     vAlpha = shimmer * scrollAlpha;
 
-    // Projection calculation
+    // 6. Project to screen
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mvPosition;
 
-    // Point size calculation with perspective attenuation & DPR scaling
-    float sizePulse = 1.0 + 0.2 * sin(uTime * 2.5 * aParams.y + phase);
-    float pSize = uBaseSize * aParams.z * sizePulse * uDpr;
-    gl_PointSize = clamp(pSize * (190.0 / -mvPosition.z), 1.5, 9.5);
+    // 7. Point size with perspective scale & scroll dispersion size pulse
+    float sizePulse = 1.0 + 0.22 * sin(uTime * 2.0 * aParams.y + phase);
+    float pSize = uBaseSize * aParams.z * sizePulse * uDpr * (1.0 + s * 0.4);
+    gl_PointSize = clamp(pSize * (195.0 / -mvPosition.z), 1.5, 9.5);
   }
 `;
 
@@ -89,7 +105,6 @@ export const particlePortraitFragment = /* glsl */ `
   varying float vGoldFactor;
 
   void main() {
-    // Render high quality anti-aliased soft circular points
     vec2 coord = gl_PointCoord - vec2(0.5);
     float dist = length(coord);
 
@@ -97,12 +112,12 @@ export const particlePortraitFragment = /* glsl */ `
       discard;
     }
 
-    // Soft feathered edge falloff
-    float radial = smoothstep(0.5, 0.12, dist);
+    // Soft anti-aliased circular particle edge
+    float radial = smoothstep(0.5, 0.08, dist);
 
-    // Warm luminous center core
-    float core = smoothstep(0.2, 0.0, dist) * 0.35 * vGoldFactor;
-    vec3 col = vColor + vec3(core);
+    // Warm luminous golden/orange core glow
+    float core = smoothstep(0.22, 0.0, dist) * 0.45 * vGoldFactor;
+    vec3 col = vColor + vec3(core * 1.0, core * 0.72, core * 0.18);
 
     gl_FragColor = vec4(col, radial * vAlpha * uOpacity);
 

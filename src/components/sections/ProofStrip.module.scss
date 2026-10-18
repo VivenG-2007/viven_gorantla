@@ -75,7 +75,7 @@
   justify-content: space-between;
   gap: 1.5rem;
   padding: 1.5rem 2rem;
-  background: rgba(34, 211, 238, 0.04);
+  background: rgba(245, 158, 11, 0.04);
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   @include focus-ring;
@@ -90,7 +90,7 @@
   }
 
   &:hover {
-    background: rgba(34, 211, 238, 0.12);
+    background: rgba(245, 158, 11, 0.12);
 
     .impactArrow {
       transform: translate(3px, -3px);
