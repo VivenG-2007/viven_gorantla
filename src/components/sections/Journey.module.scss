@@ -169,28 +169,6 @@
   color: var(--c-text-dim);
 }
 
-.candidWrapper {
-  margin-top: 1.25rem;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--c-line);
-  max-width: 440px;
-}
-
-.candidImg {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.candidCaption {
-  display: block;
-  padding: 0.6rem 0.85rem;
-  background: var(--c-surface-2);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  color: var(--c-text-dim);
-}
 
 .learningModule {
   margin-top: 2rem;

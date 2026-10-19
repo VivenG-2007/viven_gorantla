@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMotionStore } from "@/lib/store";
@@ -85,23 +84,6 @@ export function Journey() {
                   <div className={styles.card}>
                     <h3 className={styles.entryTitle}>{entry.title}</h3>
                     {entry.also && <p className={styles.entryAlso}>{entry.also}</p>}
-
-                    {/* Candid Hackathon photo breaking rhythm at index 4 */}
-                    {idx === 4 && (
-                      <div className={styles.candidWrapper}>
-                        <Image
-                          src="/images/portraits/viven-hackathon-candid.jpg"
-                          alt="Viven Gorantla at hackathon coding workstation"
-                          width={440}
-                          height={280}
-                          className={styles.candidImg}
-                          unoptimized
-                        />
-                        <span className={styles.candidCaption}>
-                          At LaunchpadX-2026 hackathon workstation (SNIST campus)
-                        </span>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
