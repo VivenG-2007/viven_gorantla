@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
 export const alt = "Viven Gorantla — AI Systems, Developer Tools & Backend Engineering";
 export const size = {
   width: 1200,
