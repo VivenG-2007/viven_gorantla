@@ -242,7 +242,7 @@ export default function RootLayout({
           <CustomCursor />
           <div id="main-content">{children}</div>
         </SmoothScroll>
-        <Analytics />
+        {(process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL) && <Analytics />}
       </body>
     </html>
   );

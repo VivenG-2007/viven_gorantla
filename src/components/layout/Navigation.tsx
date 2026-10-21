@@ -65,6 +65,7 @@ export function Navigation() {
               height={34}
               className={styles.markAvatar}
               priority
+              unoptimized
             />
           </span>
           <div className={styles.markInfo}>

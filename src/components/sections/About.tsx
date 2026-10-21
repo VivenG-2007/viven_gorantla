@@ -193,6 +193,7 @@ export function About() {
                   height={750}
                   className={styles.portraitImg}
                   priority={false}
+                  unoptimized
                 />
                 <div className={styles.duotoneOverlay} />
               </div>

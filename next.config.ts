@@ -9,6 +9,7 @@ const withAnalyzer = bundleAnalyzer({
 const config: NextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     deviceSizes: [480, 768, 1100, 1440, 1920],
     minimumCacheTTL: 31536000,
